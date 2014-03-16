@@ -6,6 +6,7 @@
 **/input_data
 **/output_data
 **/zips
+**/sample_solutions
 
 **/.DS_Store
 **/__pycache__
