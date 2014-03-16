@@ -7,7 +7,7 @@ CURSOR_UP_ONE = '\x1b[1A'
 ERASE_LINE = '\x1b[2K'
 
 def extract_features_from_image(path):
-    """Extracts features from a jpeg.
+    """Extract features from a jpeg.
 
     Args:
         path: A string corresponding to the location of the jpeg.
@@ -31,7 +31,7 @@ def extract_features_from_image(path):
     return feature_vector
 
 def extract_features_from_directory(input_directory):
-    """Extracts features from a directory of jpeg's.
+    """Extract features from all jpegs in a given directory.
 
     Args:
         input_directory: A string corresponding to the directory where the jpeg's are located.
@@ -57,7 +57,7 @@ def extract_features_from_directory(input_directory):
     return feature_vector_list
 
 def main(input_directory, output_file):
-    """Extracts feature vectors from a directory of jpeg's and saves a copy to file.
+    """Extract feature vectors from a directory of jpeg's and save a copy to file.
 
     If the feature vectors in question have already been serialized, load them in.
     

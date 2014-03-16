@@ -22,12 +22,17 @@ def folder_setup():
 def run():
     """Entry Point
     """
+    # Directory and File Paths
     image_directory_training = os.path.join(INPUT_DIRECTORY, 'images_training_rev1')
-    feature_vector_path_training = os.path.join(OUTPUT_DIRECTORY, 'feature_vector_list')
+    feature_vectors_path_training = os.path.join(OUTPUT_DIRECTORY, 'feature_vector_list')
+    solutions_path_training = os.path.join(INPUT_DIRECTORY, 'training_solutions_rev1.csv')
 
-    # Load the features vectors into the output directory
-    feature_vector_training = load_features.main(image_directory_training,
-                                                 feature_vector_path_training)
+    # Transform the images into feature vectors and load in the corresponding solutions
+    feature_vectors_training_all = load_features.main(image_directory_training,
+                                                     feature_vectors_path_training)
+
+    # Randomly split into training and validation sets
+
 
     # Run Machine Learning Algorithm
 
