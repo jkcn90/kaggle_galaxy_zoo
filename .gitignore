@@ -1,0 +1,12 @@
+*.pdf
+*.swp
+*.pyc
+*.png
+
+**/input_data
+**/output_data
+**/zips
+
+**/.DS_Store
+**/__pycache__
+**/.ipynb_checkpoints
