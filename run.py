@@ -1,49 +1,42 @@
 import os
 import glob
-import shutil
 import argparse
+import pandas as pd
+from sklearn import svm
 
-import load_features
-
-INPUT_DIRECTORY = 'input_data'
-OUTPUT_DIRECTORY = 'output_data'
-
-def folder_setup():
-    """Checks for the input directory and ensures that the output directory exists.
-    """
-    if not os.path.exists(INPUT_DIRECTORY):
-        print('Cannot find input directory: ' + INPUT_DIRECTORY)
-        exit()
-    
-    if not os.path.exists(OUTPUT_DIRECTORY):
-        print('Creating output directory: ' + OUTPUT_DIRECTORY )
-        os.makedirs(OUTPUT_DIRECTORY)
+import galaxy_data
+from galaxy_data import GalaxyData
 
 def run():
     """Entry Point
     """
-    # Directory and File Paths
-    image_directory_training = os.path.join(INPUT_DIRECTORY, 'images_training_rev1')
-    feature_vectors_path_training = os.path.join(OUTPUT_DIRECTORY, 'feature_vector_list')
-    solutions_path_training = os.path.join(INPUT_DIRECTORY, 'training_solutions_rev1.csv')
+    # Load the data
+    data = GalaxyData()
 
-    # Transform the images into feature vectors and load in the corresponding solutions
-    feature_vectors_training_all = load_features.main(image_directory_training,
-                                                     feature_vectors_path_training)
-
-    # Randomly split into training and validation sets
-
+    # Split into training and validation sets
+    (training_features, training_solutions,
+     validation_features, validation_solutions) = data.split_training_and_validation_data()
 
     # Run Machine Learning Algorithm
+    print('Training Model...')
+    clf = svm.LinearSVC()
+    clf.fit(training_features, training_solutions[0].values)
+    print('Done Training')
+
+    print('Predicting...')
+    predicted_validation_solutions = clf.predict(validation_features)
+    predicted_validation_solutions = pd.DataFrame(predicted_validation_solutions,
+                                                  index=validation_features.index)
+    print('Done Predicting')
+    difference = predicted_validation_solutions != validation_solutions
+    error = (difference.sum() / len(difference)).values[0]
+    print('Error rate: ' + str(error))
 
 def clean():
     """Cleans up the workspace.
     """
     # Remove output directory
-    if os.path.exists(OUTPUT_DIRECTORY):
-        print('Removing output directory: ' + OUTPUT_DIRECTORY)
-        print('Test Clean Function For Removing Output Directory')
-        #shutil.rmtree(OUTPUT_DIRECTORY)
+    galaxy_data.clean()
 
     # Remove files ending in pyc
     for pyc in glob.glob('*.pyc'):
@@ -58,5 +51,4 @@ if __name__ == '__main__':
     if args.clean:
         clean()
     else:
-        folder_setup()
         run()

@@ -1,6 +1,6 @@
 import os
 import glob
-import pickle
+import pandas as pd
 import SimpleCV as cv
 
 CURSOR_UP_ONE = '\x1b[1A'
@@ -37,7 +37,7 @@ def extract_features_from_directory(input_directory):
         input_directory: A string corresponding to the directory where the jpeg's are located.
 
     Returns:
-        A list of feature vectors.
+        A pandas DataFrame object containing the feature vectors.
     """
     glob_path = os.path.join(input_directory, '*.jpg')
     jpg_files = glob.glob(glob_path)
@@ -51,10 +51,18 @@ def extract_features_from_directory(input_directory):
               ' (' + str(percent_done) + '%)')
 
         # Extract a feature vector from each jpg
+        galaxy_id = int(os.path.splitext(os.path.basename(jpg_file))[0])
         feature_vector = extract_features_from_image(jpg_file)
-        feature_vector_list.append(feature_vector)
+        feature_vector_list.append([galaxy_id] + feature_vector)
         print(CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
-    return feature_vector_list
+
+    # Convert feature vector list to a data frame object and label it. Remember to update labels
+    # here if features are changed.
+    columns = ['GalaxyID', 'area', 'hue', 'lightness', 'saturation']
+    feature_vectors = pd.DataFrame(data=feature_vector_list, columns=columns,)
+    feature_vectors.set_index('GalaxyID', inplace=True)
+    feature_vectors.index.name=None
+    return feature_vectors
 
 def main(input_directory, output_file):
     """Extract feature vectors from a directory of jpeg's and save a copy to file.
@@ -66,22 +74,22 @@ def main(input_directory, output_file):
         output_file: A string corresponding to the path where the feature vectors will be saved.
 
     Returns:
-        A list of feature vectors.
+        A pandas DataFrame object containing the feature vectors.
     """
     if os.path.exists(output_file):
         print('Loading: ' + output_file)
-        feature_vector_list = pickle.load(open(output_file, 'rb'))
+        feature_vectors = pd.read_pickle(output_file)
     else:
         print('Extracting Feature Vectors From Images:')
-        feature_vector_list = extract_features_from_directory(input_directory)
+        feature_vectors = extract_features_from_directory(input_directory)
 
         # Serialize the feature vector so we can try different algorithms without running the
         # feature extraction process again
         print('WRITING: ' + output_file)
-        pickle.dump(feature_vector_list, open(output_file, 'wb'))
+        feature_vectors.to_pickle(output_file)
         print('DONE WRITING')
-    return feature_vector_list
+    return feature_vectors
 
 if __name__ == '__main__':
-    feature_vector_list = main('input_data/images_training_rev1', 'output_data')
-    print(feature_vector_list)
+    feature_vectors = main('input_data/images_training_rev1', 'output_data')
+    print(feature_vectors)
