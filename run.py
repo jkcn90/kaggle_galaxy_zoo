@@ -19,7 +19,7 @@ def run():
 
     # Run Machine Learning Algorithm
     print('Training Model...')
-    clf = svm.LinearSVC()
+    clf = svm.SVC()
     clf.fit(training_features, training_solutions[0].values)
     print('Done Training')
 
