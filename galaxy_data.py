@@ -61,9 +61,14 @@ class GalaxyData:
         percent_validation /= 100.0
         (feature_vectors, solutions) = self.get_training_data()
 
+        # Align the solutions to the GalaxyID of the feature_vectors
+        solutions = solutions.ix[feature_vectors.index]
+
+        # Randomly split the training and validation data
         random.seed(seed)
         number_of_validation_rows = int(len(feature_vectors.index)*percent_validation)
         validation_rows = random.sample(feature_vectors.index, number_of_validation_rows)
+
         
         training_features = feature_vectors.drop(validation_rows)
         training_solutions = solutions.drop(validation_rows)

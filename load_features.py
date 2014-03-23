@@ -1,13 +1,16 @@
+from __future__ import print_function
+
 import os
 import glob
+import numpy as np
 import pandas as pd
 import SimpleCV as cv
 import multiprocessing
 
-CURSOR_UP_ONE = '\x1b[1A'
-ERASE_LINE = '\x1b[2K'
+from PIL import Image
+from sklearn import preprocessing
 
-def extract_features_from_image(path):
+def extract_features_from_image_physical(path):
     """Extract features from a jpeg.
 
     Args:
@@ -27,9 +30,25 @@ def extract_features_from_image(path):
 
     # Feature vector: [area, hue, lightness, saturation]
     # Remember to update labels if features are updated here
-    feature_area = cropped_image.area()
+    blob_ratio = (largest_blob.area() / cropped_image.area())[0]
     (feature_hue, feature_lightness, feature_saturation) = cropped_image.meanColor()
-    feature_vector = [feature_area, feature_hue, feature_lightness, feature_saturation]
+    feature_vector = [blob_ratio, feature_hue, feature_lightness, feature_saturation]
+    return feature_vector
+
+def extract_features_from_image_raw(path):
+    img = cv.Image(path)
+
+    # Find the largest blob in the image and crop around it
+    blobs = img.findBlobs()
+    largest_blob = blobs.filter(blobs.area() == max(blobs.area()))
+
+    cropped_image = largest_blob.crop()[0]
+
+    # Return the raw array scaled to a feasible size
+    cropped_image = cropped_image.resize(5, 5)
+    raw_array = cropped_image.getNumpyCv2()
+
+    feature_vector = raw_array[:,:,0].flatten()
     return feature_vector
 
 def extract_features_from_image_loader(path):
@@ -44,7 +63,7 @@ def extract_features_from_image_loader(path):
     galaxy_id = int(os.path.splitext(os.path.basename(path))[0])
 
     # Extract features from images
-    feature_vector = [galaxy_id] + extract_features_from_image(path)
+    feature_vector = np.append(galaxy_id, extract_features_from_image_raw(path))
     return feature_vector
 
 def extract_features_from_directory(input_directory):
@@ -74,10 +93,16 @@ def extract_features_from_directory(input_directory):
 
     # Convert feature vector list to a data frame object and label it. Remember to update labels
     # here if features are changed.
-    columns = ['GalaxyID', 'area', 'hue', 'lightness', 'saturation']
-    feature_vectors = pd.DataFrame(data=feature_vector_list, columns=columns,)
-    feature_vectors.set_index('GalaxyID', inplace=True)
+    #columns = ['GalaxyID', 'area', 'hue', 'lightness', 'saturation']
+    #feature_vectors = pd.DataFrame(feature_vector_list, columns=columns)
+    #feature_vectors.set_index('GalaxyID', inplace=True)
+    feature_vectors = pd.DataFrame(feature_vector_list)
+    feature_vectors.set_index(0, inplace=True)
     feature_vectors.index.name=None
+
+    # Scale the parameters
+    scaled_values = preprocessing.scale(feature_vectors.values.astype(float))
+    feature_vectors = pd.DataFrame(scaled_values, feature_vectors.index, feature_vectors.columns)
     return feature_vectors
 
 def main(input_directory, output_file):

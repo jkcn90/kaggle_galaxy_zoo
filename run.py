@@ -3,6 +3,7 @@ import glob
 import argparse
 import pandas as pd
 from sklearn import svm
+from sklearn import neighbors
 
 import galaxy_data
 from galaxy_data import GalaxyData
@@ -19,6 +20,7 @@ def run():
 
     # Run Machine Learning Algorithm
     print('Training Model...')
+    #clf = neighbors.KNeighborsClassifier(1, weights='distance')
     clf = svm.SVC()
     clf.fit(training_features, training_solutions[0].values)
     print('Done Training')
