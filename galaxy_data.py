@@ -32,20 +32,40 @@ class GalaxyData:
         self.folder_setup()
 
     def get_training_data(self):
-        """Gets the feature vectos and solutions for the training data.
+        """Gets the feature vectors and solutions for the training data.
+
+        Returns: A tuple containing (feature_vectors, solutions)
+        """
+        feature_vectors_file = os.path.join(OUTPUT_DIRECTORY, 'feature_vectors_training')
+        (feature_vectors, solutions) = self._get_data(self.training_images_directory,
+                                                      feature_vectors_file)
+        return (feature_vectors, solutions)
+
+    def get_test_data(self):
+        """Gets the feature vectors and solutions for the test data.
+
+        Returns: A tuple containing (feature_vectors, solutions)
+        """
+        feature_vectors_file = os.path.join(OUTPUT_DIRECTORY, 'feature_vectors_test')
+        (feature_vectors, _) = self._get_data(self.test_images_directory,
+                                                      feature_vectors_file)
+        return feature_vectors
+
+    def _get_data(self, images_directory, feature_vectors_file):
+        """Gets the feature vectors and solutions for the specified data.
 
         Loads the feature vectors directly from the images, or if they have already been loaded,
         read them in. Process the solutions.
 
         Returns: A tuple containing (feature_vectors, solutions)
         """
-        feature_vectors_file = os.path.join(OUTPUT_DIRECTORY, 'feature_vectors_training')
-        feature_vectors = load_features.main(self.training_images_directory, feature_vectors_file)
+        feature_vectors = load_features.main(images_directory, feature_vectors_file)
 
         solutions = pd.read_csv(self.solutions_csv, index_col='GalaxyID')
         solutions.index.name=None
-        solutions = solutions.ix[:,:'Class1.3']
-        solutions = pd.DataFrame(solutions.idxmax(axis=1))
+        #solutions = solutions.ix[:,'Class1.1':'Class1.1']
+        #solutions = solutions.ix[(slice(None),('Class1.1'))]
+        #solutions = pd.DataFrame(solutions.idxmax(axis=1))
         return (feature_vectors, solutions)
 
     def split_training_and_validation_data(self, percent_validation=25, seed=None):
