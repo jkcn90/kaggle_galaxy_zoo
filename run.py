@@ -58,7 +58,7 @@ def run_test():
     test_features = data.get_test_data()
 
     # Evaluate
-    clf = RandomForestRegressor(10, n_jobs=-1, verbose=5)
+    clf = RandomForestRegressor(1, n_jobs=-1, verbose=5)
     print('Training Model...')
     clf.fit(training_features, training_solutions)
     print('Done Training')
@@ -90,4 +90,4 @@ if __name__ == '__main__':
     if args.clean:
         clean()
     else:
-        run()
+        run_test()
