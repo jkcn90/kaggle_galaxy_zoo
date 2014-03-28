@@ -62,9 +62,9 @@ def extract_features_from_image_raw(path):
 
     # Return the raw array scaled to a feasible size
     cropped_image = cropped_image.toHLS()
-    cropped_image = cropped_image.resize(20, 20)
+    cropped_image = cropped_image.resize(15, 15)
     raw_array = cropped_image.getNumpy()
-    raw_array = raw_array[:,:,1]
+    raw_array = raw_array[:,:,0]
 
     feature_vector = raw_array.flatten()
     return feature_vector

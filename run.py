@@ -1,6 +1,7 @@
 import os
 import glob
 import math
+import pickle
 import argparse
 import numpy as np
 import pandas as pd
@@ -27,8 +28,8 @@ def run():
      validation_features, validation_solutions) = data.split_training_and_validation_data(90)
 
     # Run Machine Learning Algorithm
-    clf = RandomForestRegressor(1000, n_jobs=-1, verbose=5)
-    #clf = ExtraTreesRegressor(n_jobs=-1, verbose=1)
+    #clf = RandomForestRegressor(1000, n_jobs=-1, verbose=5)
+    clf = ExtraTreesRegressor(n_jobs=-1, verbose=1)
     #clf = DecisionTreeRegressor()
     #clf = AdaBoostRegressor(base_estimator=clf, n_estimators=10, loss='exponential')
 
@@ -58,7 +59,7 @@ def run_test():
     test_features = data.get_test_data()
 
     # Evaluate
-    clf = RandomForestRegressor(10, n_jobs=-1, verbose=5)
+    clf = ExtraTreesRegressor(1000, n_jobs=-1, verbose=5)
     print('Training Model...')
     clf.fit(training_features, training_solutions)
     print('Done Training')
@@ -68,8 +69,12 @@ def run_test():
     predicted_solutions = pd.DataFrame(predicted_solutions,
                                        index=test_features.index,
                                        columns=training_solutions.columns)
+
     print('Done Predicting')
     predicted_solutions.to_csv('output_data/a.csv')
+
+    print('Saving clf')
+    pickle.dump(clf, open('clf_save', 'output_data/wb'))
 
 def clean():
     """Cleans up the workspace.
@@ -90,4 +95,4 @@ if __name__ == '__main__':
     if args.clean:
         clean()
     else:
-        run()
+        run_test()
