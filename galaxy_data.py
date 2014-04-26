@@ -20,10 +20,13 @@ class GalaxyData:
         solutions_csv: The location of the training solutions csv file
     """
 
-    def __init__(self):
+    def __init__(self, feature_extraction_func):
         """Initializes the GalaxyData class with file directories and file locations. Ensures the
            creation of the output directory.
         """
+        self.feature_extraction_func = feature_extraction_func
+        self.output_directory = os.path.join(OUTPUT_DIRECTORY, self.feature_extraction_func.__name__)
+
         self.training_images_directory = os.path.join(INPUT_DIRECTORY, 'images_training_rev1')
         self.test_images_directory = os.path.join(INPUT_DIRECTORY, 'images_test_rev1')
 
@@ -36,7 +39,7 @@ class GalaxyData:
 
         Returns: A tuple containing (feature_vectors, solutions)
         """
-        feature_vectors_file = os.path.join(OUTPUT_DIRECTORY, 'feature_vectors_training')
+        feature_vectors_file = os.path.join(self.output_directory, 'feature_vectors_training')
         (feature_vectors, solutions) = self._get_data(self.training_images_directory,
                                                       feature_vectors_file)
         return (feature_vectors, solutions)
@@ -46,9 +49,8 @@ class GalaxyData:
 
         Returns: A tuple containing (feature_vectors, solutions)
         """
-        feature_vectors_file = os.path.join(OUTPUT_DIRECTORY, 'feature_vectors_test')
-        (feature_vectors, _) = self._get_data(self.test_images_directory,
-                                                      feature_vectors_file)
+        feature_vectors_file = os.path.join(self.output_directory, 'feature_vectors_test')
+        (feature_vectors, _) = self._get_data(self.test_images_directory, feature_vectors_file)
         return feature_vectors
 
     def _get_data(self, images_directory, feature_vectors_file):
@@ -59,13 +61,10 @@ class GalaxyData:
 
         Returns: A tuple containing (feature_vectors, solutions)
         """
-        feature_vectors = load_features.main(images_directory, feature_vectors_file)
+        feature_vectors = load_features.main(images_directory, feature_vectors_file,
+                                             self.feature_extraction_func)
 
         solutions = pd.read_csv(self.solutions_csv, index_col='GalaxyID')
-        solutions.index.name=None
-        #solutions = solutions.ix[:,'Class1.1':'Class1.1']
-        #solutions = solutions.ix[(slice(None),('Class1.1'))]
-        #solutions = pd.DataFrame(solutions.idxmax(axis=1))
         return (feature_vectors, solutions)
 
     def split_training_and_validation_data(self, percent_validation=25, seed=None):
@@ -101,12 +100,11 @@ class GalaxyData:
         """Checks for the input directory and ensures that the output directory exists.
         """
         if not os.path.exists(INPUT_DIRECTORY):
-            print('Cannot find input directory: ' + INPUT_DIRECTORY)
-            exit()
+            raise RuntimeError('Cannot find input directory: ' + INPUT_DIRECTORY)
         
-        if not os.path.exists(OUTPUT_DIRECTORY):
-            print('Creating output directory: ' + OUTPUT_DIRECTORY )
-            os.makedirs(OUTPUT_DIRECTORY)
+        if not os.path.exists(self.output_directory):
+            print('Creating output directory: ' + self.output_directory)
+            os.makedirs(self.output_directory)
 
 
 def clean():

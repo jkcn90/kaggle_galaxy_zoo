@@ -4,70 +4,10 @@ import os
 import glob
 import numpy as np
 import pandas as pd
-import SimpleCV as cv
 import multiprocessing
 
 from PIL import Image
 from sklearn import preprocessing
-
-def extract_features_from_image_physical(path):
-    """Extract features from a jpeg.
-
-    Args:
-        path: A string corresponding to the location of the jpeg.
-
-    Returns:
-        A list of numbers representing features.
-    """
-    img = cv.Image(path)
-
-    # Find the largest blob in the image and crop around it
-    blobs = img.findBlobs()
-    largest_blob = blobs.filter(blobs.area() == max(blobs.area()))
-
-    cropped_image = largest_blob.crop()[0]
-    cropped_image = cropped_image.toHLS()
-
-    # Feature vector: [aspect_ratio, hue, lightness, saturation]
-    # Remember to update labels if features are updated here
-    aspect_ratio = largest_blob[0].aspectRatio()
-    (feature_hue, feature_lightness, feature_saturation) = cropped_image.meanColor()
-    feature_vector = [aspect_ratio, feature_hue, feature_lightness, feature_saturation]
-    return feature_vector
-
-def extract_features_from_image_raw(path):
-    img = cv.Image(path)
-
-    # Find the largest blob in the image and crop around it
-    blobs = img.findBlobs()
-    largest_blob = blobs.filter(blobs.area() == max(blobs.area()))[0]
-
-    # Rotate blob
-    angle = largest_blob.angle()
-    w = largest_blob.minRectWidth()
-    h = largest_blob.minRectHeight()
-
-    if w < h:
-        angle -= 90
-
-    img = img.rotate(angle)
-
-    # Get the bounding box of the image and calculate a centered square
-    bounding_box_xywh = largest_blob.boundingBox()
-
-    center = largest_blob.centroid()
-    max_dim = max(bounding_box_xywh[2], bounding_box_xywh[3])
-    xywh = center+(max_dim, max_dim)
-    cropped_image = img.crop(xywh, centered=True)
-
-    # Return the raw array scaled to a feasible size
-    cropped_image = cropped_image.toHLS()
-    cropped_image = cropped_image.resize(15, 15)
-    raw_array = cropped_image.getNumpy()
-    raw_array = raw_array[:,:,0]
-
-    feature_vector = raw_array.flatten()
-    return feature_vector
 
 def extract_features_from_image_loader(path):
     """Sets up parallel process to run feature extraction from a jpeg
@@ -84,7 +24,7 @@ def extract_features_from_image_loader(path):
     feature_vector = np.append(galaxy_id, extract_features_from_image_raw(path))
     return feature_vector
 
-def extract_features_from_directory(input_directory):
+def extract_features_from_directory(input_directory, feature_extraction_func):
     """Extract features from all jpegs in a given directory.
 
     Args:
@@ -93,7 +33,7 @@ def extract_features_from_directory(input_directory):
     Returns:
         A pandas DataFrame object containing the feature vectors.
     """
-    glob_path = os.path.join(input_directory, '*.jpg')
+    glob_path = os.path.join(input_directory, '100*.jpg')
     jpg_files = glob.glob(glob_path)
     number_of_images = len(jpg_files)
 
@@ -103,27 +43,23 @@ def extract_features_from_directory(input_directory):
     chunk_size = number_of_images // pool_size
 
     pool = multiprocessing.Pool(pool_size, maxtasksperchild=2)
-    feature_vector_list = pool.map(extract_features_from_image_loader, jpg_files, chunk_size)
+    feature_vector_list = pool.map(feature_extraction_func, jpg_files, chunk_size)
 
     pool.close()
     pool.join()
     print('Finished Extracting Features')
 
-    # Convert feature vector list to a data frame object and label it. Remember to update labels
-    # here if features are changed.
-    #columns = ['GalaxyID', 'area', 'hue', 'lightness', 'saturation']
-    #feature_vectors = pd.DataFrame(feature_vector_list, columns=columns)
-    #feature_vectors.set_index('GalaxyID', inplace=True)
+    # Set GalaxyID as label
     feature_vectors = pd.DataFrame(feature_vector_list)
     feature_vectors.set_index(0, inplace=True)
-    feature_vectors.index.name=None
+    feature_vectors.index.name='GalaxyID'
 
     # Scale the parameters
     scaled_values = preprocessing.scale(feature_vectors.values.astype(float))
     feature_vectors = pd.DataFrame(scaled_values, feature_vectors.index, feature_vectors.columns)
     return feature_vectors
 
-def main(input_directory, output_file):
+def main(input_directory, output_file, feature_extraction_func):
     """Extract feature vectors from a directory of jpeg's and save a copy to file.
 
     If the feature vectors in question have already been serialized, load them in.
@@ -140,7 +76,7 @@ def main(input_directory, output_file):
         feature_vectors = pd.read_pickle(output_file)
     else:
         print('Extracting Feature Vectors From Images:')
-        feature_vectors = extract_features_from_directory(input_directory)
+        feature_vectors = extract_features_from_directory(input_directory, feature_extraction_func)
 
         # Serialize the feature vector so we can try different algorithms without running the
         # feature extraction process again

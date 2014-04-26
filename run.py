@@ -1,80 +1,49 @@
 import os
 import glob
-import math
-import pickle
 import argparse
-import numpy as np
-import pandas as pd
 
-from sklearn.metrics import mean_squared_error
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.ensemble import ExtraTreesRegressor
-from sklearn.ensemble import AdaBoostRegressor
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import GradientBoostingRegressor
-from sklearn import svm
-
+import models
+import evaluate
 import galaxy_data
+import feature_extraction
+
 from galaxy_data import GalaxyData
 
-def run():
+def run(model):
     """Entry Point
     """
-    # Load the data
-    data = GalaxyData()
+    # Load the data and split into training and validation sets
+    data = GalaxyData(feature_extraction.extract_features_from_image_physical)
 
-    # Split into training and validation sets
     (training_features, training_solutions,
      validation_features, validation_solutions) = data.split_training_and_validation_data(90)
 
-    # Run Machine Learning Algorithm
-    #clf = RandomForestRegressor(1000, n_jobs=-1, verbose=5)
-    clf = ExtraTreesRegressor(n_jobs=-1, verbose=1)
-    #clf = DecisionTreeRegressor()
-    #clf = AdaBoostRegressor(base_estimator=clf, n_estimators=10, loss='exponential')
+    # Train and Predict Model
+    (clf, columns) = model(training_features, training_solutions)
+    predicted_validation_solutions = models.predict(clf, validation_features, columns)
 
-    #clf = GradientBoostingRegressor()
-    #clf = svm.SVC()
+    # Evaluate Predictions
+    evaluate.get_rmse(validation_solutions, predicted_validation_solutions)
 
-    print('Training Model... ')
-    clf.fit(training_features, training_solutions)
-    print('Done Training')
+def competition_run():
+    pass
 
-    print('Predicting...')
-    predicted_validation_solutions = clf.predict(validation_features)
-    predicted_validation_solutions = pd.DataFrame(predicted_validation_solutions,
-                                                  index=validation_features.index,
-                                                  columns=validation_solutions.columns)
-    print('Done Predicting')
-    rmse = math.sqrt(mean_squared_error(validation_solutions.values,
-                                        predicted_validation_solutions.values))
-    print('RMSE: ' + str(100*rmse) + '%')
-    return (validation_solutions, predicted_validation_solutions)
+def resolve_model_name(name):
+    if name is None:
+        name = 'default_model'
+    else:
+        models_list = list_models(False)
+        if name not in models_list:
+            raise RuntimeError('\n\t'.join(["Invalid Model: '" + name + 
+                                            "'. Select from the following models:"] + models_list))
+    model = getattr(models, (name))
+    return model
 
-def run_test():
-    # Load the data
-    data = GalaxyData()
-
-    (training_features, training_solutions) = data.get_training_data()
-    test_features = data.get_test_data()
-
-    # Evaluate
-    clf = ExtraTreesRegressor(1000, n_jobs=-1, verbose=5)
-    print('Training Model...')
-    clf.fit(training_features, training_solutions)
-    print('Done Training')
-
-    print('Predicting...')
-    predicted_solutions = clf.predict(test_features)
-    predicted_solutions = pd.DataFrame(predicted_solutions,
-                                       index=test_features.index,
-                                       columns=training_solutions.columns)
-
-    print('Done Predicting')
-    predicted_solutions.to_csv('output_data/a.csv')
-
-    print('Saving clf')
-    pickle.dump(clf, open('clf_save', 'output_data/wb'))
+def list_models(print_names=True):
+    models_list = [function_names for function_names in dir(models) if 'model' in function_names]
+    if print_names:
+        print('\n\t'.join(models_list))
+    return models_list
 
 def clean():
     """Cleans up the workspace.
@@ -87,12 +56,19 @@ def clean():
         os.remove(pyc)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--clean', help='cleans workspace',
-                        action='store_true')
+    parser = argparse.ArgumentParser(description='Runs models on the GalaxyZoo data. The default' +
+                                                 'model is used if no model is selected')
+    parser.add_argument('--competition', help='runs competition mode', action='store_true')
+    parser.add_argument('--clean', help='cleans workspace', action='store_true')
+    parser.add_argument('--list', help='lists available models', action='store_true')
+    parser.add_argument('--model', help='runs the selected model')
     args = parser.parse_args()
 
-    if args.clean:
+    if args.list:
+        list_models()
+    elif args.clean:
         clean()
+    elif args.competition:
+        competition_run()
     else:
-        run_test()
+        run(resolve_model_name(args.model))
