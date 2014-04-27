@@ -10,7 +10,10 @@ import feature_extraction
 from galaxy_data import GalaxyData
 
 def run(model):
-    """Entry Point
+    """Entry Point to run models
+
+    Args:
+        model: model function to run.
     """
     # Load the data and split into training and validation sets
     data = GalaxyData(feature_extraction.extract_features_from_image_physical)
@@ -29,6 +32,13 @@ def competition_run():
     pass
 
 def resolve_model_name(name):
+    """Gets the model function corresponding to the name.
+
+    Args:
+        name: name of the model function to call.
+
+    Returns: The model function corresponding to the name.
+    """
     if name is None:
         name = 'default_model'
     else:
@@ -40,6 +50,13 @@ def resolve_model_name(name):
     return model
 
 def list_models(print_names=True):
+    """Displays the available models in the model file.
+
+    Args:
+        print_names: Trigger to configure if models_list should be displayed.
+
+    Returns: A list containing the available function models.
+    """
     models_list = [function_names for function_names in dir(models) if 'model' in function_names]
     if print_names:
         print('\n\t'.join(models_list))

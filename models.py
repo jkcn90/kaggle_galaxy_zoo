@@ -13,6 +13,15 @@ def default_model(features, solutions):
     return (clf, columns)
 
 def predict(clf, features, columns):
+    """Get the predicted solutions and configure
+
+    Args:
+        clf: The classifier to use to predict the solutions.
+        features: Features to predict solutions with.
+        columns: Columns to label the solutions.
+
+    Returns: Predicted solutions as a Pandas DataFrame.
+    """
     print('Predicting...')
     predicted_solutions = clf.predict(features)
     predicted_solutions = pd.DataFrame(predicted_solutions, index=features.index,
