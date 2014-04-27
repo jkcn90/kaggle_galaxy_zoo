@@ -2,9 +2,8 @@ import pandas as pd
 
 from sklearn.ensemble import RandomForestRegressor
 
-def default_model(features, solutions):
-    #clf = RandomForestRegressor(10, max_features='log2', n_jobs=-1, verbose=5)
-    clf = RandomForestRegressor(10, max_features='log2', n_jobs=-1)
+def default_model(features, solutions, verbose=0):
+    clf = RandomForestRegressor(10, max_features='log2', n_jobs=-1, verbose=verbose)
     columns = solutions.columns
 
     print('Training Model... ')

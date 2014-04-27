@@ -2,27 +2,10 @@ from __future__ import print_function
 
 import os
 import glob
-import numpy as np
 import pandas as pd
 import multiprocessing
 
-from PIL import Image
 from sklearn import preprocessing
-
-def extract_features_from_image_loader(path):
-    """Sets up parallel process to run feature extraction from a jpeg
-
-    Args:
-        path: A string corresponding to the location of the jpeg.
-
-    Returns:
-        A list of numbers representing features.
-    """
-    galaxy_id = int(os.path.splitext(os.path.basename(path))[0])
-
-    # Extract features from images
-    feature_vector = np.append(galaxy_id, extract_features_from_image_raw(path))
-    return feature_vector
 
 def extract_features_from_directory(input_directory, feature_extraction_func):
     """Extract features from all jpegs in a given directory.
@@ -43,14 +26,14 @@ def extract_features_from_directory(input_directory, feature_extraction_func):
     chunk_size = number_of_images // pool_size
 
     pool = multiprocessing.Pool(pool_size, maxtasksperchild=2)
-    feature_vector_list = pool.map(feature_extraction_func, jpg_files, chunk_size)
+    feature_vectors = pool.map(feature_extraction_func, jpg_files, chunk_size)
 
     pool.close()
     pool.join()
     print('Finished Extracting Features')
 
     # Set GalaxyID as label
-    feature_vectors = pd.DataFrame(feature_vector_list)
+    feature_vectors = pd.DataFrame(feature_vectors)
     feature_vectors.set_index(0, inplace=True)
     feature_vectors.index.name='GalaxyID'
 

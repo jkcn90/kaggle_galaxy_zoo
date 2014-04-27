@@ -1,6 +1,8 @@
+import os
+import numpy as np
 import SimpleCV as cv
 
-def extract_features_from_image_physical(path):
+def physical(path):
     """Extract features from a jpeg.
 
     Args:
@@ -23,9 +25,11 @@ def extract_features_from_image_physical(path):
     aspect_ratio = largest_blob[0].aspectRatio()
     (feature_hue, feature_lightness, feature_saturation) = cropped_image.meanColor()
     feature_vector = [aspect_ratio, feature_hue, feature_lightness, feature_saturation]
+
+    feature_vector = _add_galaxy_id(path, feature_vector)
     return feature_vector
 
-def extract_features_from_image_raw(path):
+def raw(path):
     img = cv.Image(path)
 
     # Find the largest blob in the image and crop around it
@@ -57,5 +61,20 @@ def extract_features_from_image_raw(path):
     raw_array = raw_array
 
     feature_vector = raw_array.flatten()
+
+    feature_vector = _add_galaxy_id(path, feature_vector)
     return feature_vector
 
+def _add_galaxy_id(path, feature_vector):
+    """Adds galaxy id to a feature vector.
+
+    Args:
+        path: A string corresponding to the location of the jpeg.
+        feature_vector: A list of numbers representing features.
+
+    Returns:
+        A list of numbers representing features.
+    """
+    galaxy_id = int(os.path.splitext(os.path.basename(path))[0])
+    feature_vector = np.append(galaxy_id, feature_vector)
+    return feature_vector
