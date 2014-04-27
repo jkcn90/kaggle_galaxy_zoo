@@ -29,7 +29,16 @@ def run(model, verbose=0):
     evaluate.get_rmse(validation_solutions, predicted_validation_solutions)
 
 def competition_run():
-    pass
+    data = GalaxyData()
+
+    (training_features, training_solutions) = data.get_training_data()
+    test_features = data.get_test_data()
+
+    # Predict
+    (clf, columns) = models.default_model(training_features, training_solutions, 5)
+    predicted_solutions = models.predict(clf, test_features, columns)
+
+    data.save_solution(predicted_solutions)
 
 def resolve_model_name(name):
     """Gets the model function corresponding to the name.
@@ -75,11 +84,11 @@ def clean():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Runs models on the GalaxyZoo data. The default' +
                                                  'model is used if no model is selected')
-    parser.add_argument('--competition', help='runs competition mode', action='store_true')
-    parser.add_argument('--verbose', help='triggers extra information', action='store_true')
-    parser.add_argument('--clean', help='cleans workspace', action='store_true')
-    parser.add_argument('--list', help='lists available models', action='store_true')
-    parser.add_argument('--model', help='runs the selected model')
+    parser.add_argument('-c', '--competition', help='runs competition mode', action='store_true')
+    parser.add_argument('-v', '--verbose', help='triggers extra information', action='store_true')
+    parser.add_argument('-x', '--clean', help='cleans workspace', action='store_true')
+    parser.add_argument('-l', '--list', help='lists available models', action='store_true')
+    parser.add_argument('-m', '--model', help='runs the selected model')
     args = parser.parse_args()
 
     if args.list:

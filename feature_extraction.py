@@ -2,7 +2,7 @@ import os
 import numpy as np
 import SimpleCV as cv
 
-def physical(path):
+def default(path):
     """Extract features from a jpeg.
 
     Args:
@@ -11,6 +11,9 @@ def physical(path):
     Returns:
         A list of numbers representing features.
     """
+    return physical(path)
+
+def physical(path):
     img = cv.Image(path)
 
     # Find the largest blob in the image and crop around it

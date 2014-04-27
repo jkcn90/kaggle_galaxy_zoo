@@ -4,6 +4,7 @@ import random
 import pandas as pd
 
 import load_features
+import feature_extraction
 
 INPUT_DIRECTORY = 'input_data'
 OUTPUT_DIRECTORY = 'output_data'
@@ -20,7 +21,7 @@ class GalaxyData:
         solutions_csv: The location of the training solutions csv file
     """
 
-    def __init__(self, feature_extraction_func):
+    def __init__(self, feature_extraction_func=feature_extraction.default):
         """Initializes the GalaxyData class with file directories and file locations. Ensures the
            creation of the output directory.
         """
@@ -65,6 +66,10 @@ class GalaxyData:
                                              self.feature_extraction_func)
 
         solutions = pd.read_csv(self.solutions_csv, index_col='GalaxyID')
+
+        # Align the solutions to the GalaxyID of the feature_vectors
+        solutions = solutions.ix[feature_vectors.index]
+
         return (feature_vectors, solutions)
 
     def split_training_and_validation_data(self, percent_validation=25, seed=None):
@@ -80,9 +85,6 @@ class GalaxyData:
         percent_validation /= 100.0
         (feature_vectors, solutions) = self.get_training_data()
 
-        # Align the solutions to the GalaxyID of the feature_vectors
-        solutions = solutions.ix[feature_vectors.index]
-
         # Randomly split the training and validation data
         random.seed(seed)
         number_of_validation_rows = int(len(feature_vectors.index)*percent_validation)
@@ -95,6 +97,15 @@ class GalaxyData:
         validation_features = feature_vectors.ix[validation_rows]
         validation_solutions = solutions.ix[validation_rows]
         return (training_features, training_solutions, validation_features, validation_solutions)
+
+    def save_solution(slef, solutions):
+        """Save the solutions to csv.
+
+        Args:
+            solutions: Pandas representation of the solutions.
+        """
+        solutions_csv = os.path.join(OUTPUT_DIRECTORY, 'solutions.csv')
+        solutions.to_csv(solutions_csv)
 
     def folder_setup(self):
         """Checks for the input directory and ensures that the output directory exists.

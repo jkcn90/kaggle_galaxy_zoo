@@ -16,7 +16,7 @@ def extract_features_from_directory(input_directory, feature_extraction_func):
     Returns:
         A pandas DataFrame object containing the feature vectors.
     """
-    glob_path = os.path.join(input_directory, '100*.jpg')
+    glob_path = os.path.join(input_directory, '*.jpg')
     jpg_files = glob.glob(glob_path)
     number_of_images = len(jpg_files)
 
