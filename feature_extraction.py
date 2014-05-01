@@ -37,7 +37,6 @@ def physical(path):
     cropped_image = cropped_image.toHLS()
 
     # Feature vector: [aspect_ratio, hue, lightness, saturation]
-    # Remember to update labels if features are updated here
     aspect_ratio = largest_blob[0].aspectRatio()
     (feature_hue, feature_lightness, feature_saturation) = cropped_image.meanColor()
     feature_vector = [aspect_ratio, feature_hue, feature_lightness, feature_saturation]
