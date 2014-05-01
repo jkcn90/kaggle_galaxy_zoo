@@ -48,7 +48,7 @@ def gradient_boost_model(features, solutions, verbose=0):
 def random_forest_model(features, solutions, verbose=0):
     columns = solutions.columns
 
-    clf = RandomForestRegressor(20, max_features='log2', n_jobs=-1, verbose=verbose)
+    clf = RandomForestRegressor(100, max_features='log2', n_jobs=-1, verbose=verbose)
 
     print('Training Model... ')
     clf.fit(features, solutions)

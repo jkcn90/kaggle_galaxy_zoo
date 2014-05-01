@@ -17,7 +17,7 @@ def run(model, verbose=0):
         model: model function to run.
     """
     # Load the data and split into training and validation sets
-    data = GalaxyData(feature_extraction.raw)
+    data = GalaxyData()
 
     (training_features, training_solutions,
      validation_features, validation_solutions) = data.split_training_and_validation_data(50)
@@ -30,7 +30,7 @@ def run(model, verbose=0):
     evaluate.get_rmse(validation_solutions, predicted_validation_solutions)
 
 def competition_run():
-    data = GalaxyData()
+    data = GalaxyData(feature_extraction.hog_features)
 
     (training_features, training_solutions) = data.get_training_data()
     test_features = data.get_test_data()
