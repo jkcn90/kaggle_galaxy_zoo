@@ -1,6 +1,21 @@
+'''
+@note: Commenting out simple-cv stuff. hog_features uses skimage library for feature processing
+'''
+
 import os
 import numpy as np
-import SimpleCV as cv
+# import SimpleCV as cv
+import matplotlib.pyplot as plt
+from skimage import io
+from skimage import color
+from skimage.transform import resize
+from skimage.feature import hog
+from skimage import exposure
+from skimage.restoration import denoise_tv_chambolle
+from skimage.filter import threshold_otsu
+from skimage.morphology import label
+from skimage.measure import regionprops
+from skimage import transform
 
 def default(path):
     """Extract features from a jpeg.
@@ -97,6 +112,47 @@ def raw_rotate(path):
 
     feature_vector = _add_galaxy_id(path, feature_vector)
     return feature_vector
+
+def hog_features(path):
+    '''
+    Takes the image path and uses skimage libraries to get HoG features.
+    @author: Darshan Hegde
+    '''
+    print "Processing image: ", path.split("/")[-1]
+    galaxy_image = io.imread(path, as_grey=True)
+    galaxy_image = exposure.rescale_intensity(galaxy_image, out_range=(0,255))    # Improving contrast
+    galaxy_image = rotateImage(galaxy_image)
+    fd = hog(galaxy_image, orientations=12, pixels_per_cell=(24, 24),
+                    cells_per_block=(1, 1), visualise=False)
+
+    print fd.shape
+    feature_vector = _add_galaxy_id(path, fd)
+    return feature_vector
+
+def rotateImage(inImage):
+    '''
+    Takes the biggest connected component and finds the orientation and
+    rotates so that the ellipse is vertical
+    @author: Darshan Hegde
+    '''
+    # apply threshold
+    thresh = threshold_otsu(inImage)
+    thImage = inImage > thresh
+    
+    # label image regions
+    label_image = label(thImage)
+    
+    max_region = None
+    max_area = 0
+    for region in regionprops(label_image):
+    
+        if max_area<region.area:
+            max_area = region.area
+            max_region = region
+    
+    rtImage = transform.rotate(inImage, 90-(180*max_region.orientation/np.pi))
+    return rtImage
+    
 
 def _add_galaxy_id(path, feature_vector):
     """Adds galaxy id to a feature vector.

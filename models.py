@@ -12,7 +12,7 @@ def default_model(features, solutions, verbose=0):
     return test_model(features, solutions, verbose)
 
 def test_model(features, solutions, verbose=0):
-    clf = RandomForestRegressor(10, max_features='log2', n_jobs=-1, verbose=verbose)
+    clf = RandomForestRegressor(20, max_depth=20, max_features='log2', n_jobs=-1, verbose=verbose)
     columns = solutions.columns
 
     print('Training Model... ')
