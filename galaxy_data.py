@@ -33,7 +33,17 @@ class GalaxyData:
 
         self.solutions_csv = os.path.join(INPUT_DIRECTORY, 'training_solutions_rev1.csv')
 
+        self.restricted_universe = None
+
         self.folder_setup()
+
+    def set_restricted_universe(self, restricted_universe):
+        """Sets restricted universe of GalaxyID to load
+
+        Args:
+            restricted_universe: Restricted universe of GalaxyID.
+        """
+        self.restricted_universe = restricted_universe
 
     def get_training_data(self):
         """Gets the feature vectors and solutions for the training data.
@@ -63,7 +73,8 @@ class GalaxyData:
         Returns: A tuple containing (feature_vectors, solutions)
         """
         feature_vectors = load_features.main(images_directory, feature_vectors_file,
-                                             self.feature_extraction_func)
+                                             self.feature_extraction_func,
+                                             self.restricted_universe)
 
         solutions = pd.read_csv(self.solutions_csv, index_col='GalaxyID')
 

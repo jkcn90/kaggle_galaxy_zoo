@@ -7,23 +7,31 @@ import multiprocessing
 
 from sklearn import preprocessing
 
-def extract_features_from_directory(input_directory, feature_extraction_func):
+def extract_features_from_directory(input_directory, feature_extraction_func,
+                                    restricted_universe=None):
     """Extract features from all jpegs in a given directory.
 
     Args:
         input_directory: A string corresponding to the directory where the jpeg's are located.
+        features_exctraction_func: The function with which to extract features with.
+        restricted_universe: Restricted universe of GalaxyID.
 
     Returns:
         A pandas DataFrame object containing the feature vectors.
     """
-    glob_path = os.path.join(input_directory, '*.jpg')
-    jpg_files = glob.glob(glob_path)
+    if restricted_universe is None:
+        glob_path = os.path.join(input_directory, '*.jpg')
+        jpg_files = glob.glob(glob_path)
+    else:
+        jpg_files = [os.path.join(input_directory, str(x) + '.jpg') for x in restricted_universe]
     number_of_images = len(jpg_files)
 
     # Setup parallel processing
     print('Extracting Features ...')
     pool_size = multiprocessing.cpu_count() * 2
     chunk_size = number_of_images // pool_size
+    if chunk_size == 0:
+        chunk_size = 1
 
     pool = multiprocessing.Pool(pool_size, maxtasksperchild=2)
     feature_vectors = pool.map(feature_extraction_func, jpg_files, chunk_size)
@@ -42,7 +50,7 @@ def extract_features_from_directory(input_directory, feature_extraction_func):
     feature_vectors = pd.DataFrame(scaled_values, feature_vectors.index, feature_vectors.columns)
     return feature_vectors
 
-def main(input_directory, output_file, feature_extraction_func):
+def main(input_directory, output_file, feature_extraction_func, restricted_universe=None):
     """Extract feature vectors from a directory of jpeg's and save a copy to file.
 
     If the feature vectors in question have already been serialized, load them in.
@@ -50,6 +58,8 @@ def main(input_directory, output_file, feature_extraction_func):
     Args:
         input_directory: A string corresponding to the directory where the jpeg's are located.
         output_file: A string corresponding to the path where the feature vectors will be saved.
+        features_exctraction_func: The function with which to extract features with.
+        restricted_universe: Restricted universe of GalaxyID.
 
     Returns:
         A pandas DataFrame object containing the feature vectors.
@@ -59,7 +69,8 @@ def main(input_directory, output_file, feature_extraction_func):
         feature_vectors = pd.read_pickle(output_file)
     else:
         print('Extracting Feature Vectors From Images:')
-        feature_vectors = extract_features_from_directory(input_directory, feature_extraction_func)
+        feature_vectors = extract_features_from_directory(input_directory, feature_extraction_func,
+                                                          restricted_universe)
 
         # Serialize the feature vector so we can try different algorithms without running the
         # feature extraction process again

@@ -9,11 +9,46 @@ from sklearn.ensemble import GradientBoostingRegressor
 from sklearn import svm
 
 def default_model(features, solutions, verbose=0):
-    return test_model(features, solutions, verbose)
+    return random_forest_model(features, solutions, verbose)
 
 def test_model(features, solutions, verbose=0):
-    clf = RandomForestRegressor(10, max_features='log2', n_jobs=-1, verbose=verbose)
+    columns = solutions.columns[:1]
+    solutions = solutions[columns[0]]
+
+    clf = svm.SVR(max_iter=100, verbose=verbose)
+
+    print('Training Model... ')
+    clf.fit(features, solutions)
+    print('Done Training')
+    return (clf, columns)
+
+def ada_boost_model(features, solutions, verbose=0):
+    columns = solutions.columns[:1]
+    solutions = solutions[columns[0]]
+
+    clf = DecisionTreeRegressor(max_depth=1)
+    clf = AdaBoostRegressor(clf, n_estimators=100)
+
+    print('Training Model... ')
+    clf.fit(features, solutions)
+    print('Done Training')
+    return (clf, columns)
+
+def gradient_boost_model(features, solutions, verbose=0):
+    columns = solutions.columns[:1]
+    solutions = solutions[columns[0]]
+
+    clf = GradientBoostingRegressor(loss='ls', max_features='log2', verbose=verbose)
+
+    print('Training Model... ')
+    clf.fit(features, solutions)
+    print('Done Training')
+    return (clf, columns)
+
+def random_forest_model(features, solutions, verbose=0):
     columns = solutions.columns
+
+    clf = RandomForestRegressor(20, max_features='log2', n_jobs=-1, verbose=verbose)
 
     print('Training Model... ')
     clf.fit(features, solutions)
