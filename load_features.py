@@ -7,13 +7,14 @@ import multiprocessing
 
 from sklearn import preprocessing
 
-def extract_features_from_directory(input_directory, feature_extraction_func,
+def extract_features_from_directory(input_directory, feature_extraction_func, scale_features=True,
                                     restricted_universe=None):
     """Extract features from all jpegs in a given directory.
 
     Args:
         input_directory: A string corresponding to the directory where the jpeg's are located.
         features_exctraction_func: The function with which to extract features with.
+        scale_features: Scale the feature vectors.
         restricted_universe: Restricted universe of GalaxyID.
 
     Returns:
@@ -46,11 +47,15 @@ def extract_features_from_directory(input_directory, feature_extraction_func,
     feature_vectors.index.name='GalaxyID'
 
     # Scale the parameters
-    scaled_values = preprocessing.scale(feature_vectors.values.astype(float))
-    feature_vectors = pd.DataFrame(scaled_values, feature_vectors.index, feature_vectors.columns)
+    if scale_features:
+        scaled_values = preprocessing.scale(feature_vectors.values.astype(float))
+        feature_vectors = pd.DataFrame(scaled_values, feature_vectors.index,
+                                       feature_vectors.columns)
+
     return feature_vectors
 
-def main(input_directory, output_file, feature_extraction_func, restricted_universe=None):
+def main(input_directory, output_file, feature_extraction_func, scale_features=True,
+         restricted_universe=None):
     """Extract feature vectors from a directory of jpeg's and save a copy to file.
 
     If the feature vectors in question have already been serialized, load them in.
@@ -59,6 +64,7 @@ def main(input_directory, output_file, feature_extraction_func, restricted_unive
         input_directory: A string corresponding to the directory where the jpeg's are located.
         output_file: A string corresponding to the path where the feature vectors will be saved.
         features_exctraction_func: The function with which to extract features with.
+        scale_features: Scale the feature vectors.
         restricted_universe: Restricted universe of GalaxyID.
 
     Returns:
@@ -70,7 +76,7 @@ def main(input_directory, output_file, feature_extraction_func, restricted_unive
     else:
         print('Extracting Feature Vectors From Images:')
         feature_vectors = extract_features_from_directory(input_directory, feature_extraction_func,
-                                                          restricted_universe)
+                                                          scale_features, restricted_universe)
 
         # Serialize the feature vector so we can try different algorithms without running the
         # feature extraction process again

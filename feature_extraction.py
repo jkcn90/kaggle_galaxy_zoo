@@ -44,6 +44,14 @@ def physical(path):
     feature_vector = _add_galaxy_id(path, feature_vector)
     return feature_vector
 
+def raw_all(path):
+    img = cv.Image(path)
+
+    feature_vector = img.getGrayNumpy()
+
+    feature_vector = _add_galaxy_id(path, feature_vector)
+    return feature_vector
+
 def raw(path, rotate_images=False, cropped_size=9):
     img = cv.Image(path)
 
