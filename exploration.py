@@ -24,13 +24,13 @@ def get_reduced_solutions(solutions=None, upper_threshold=1):
     solutions = solutions.ix[index]
     return solutions
 
-def extract_features(index=None, extraction_method, percent_subset=100):
+def extract_features(extraction_method, index=None, percent_subset=100):
     """Runs the given extraction method on only those galaxys listed in index. Return a subset of
     those galaxies.
 
     Attrubutes:
-        index: Index of Galaxy for which to process data. If None, process all galaxies.
         extraction_method: Extraction method to use. See feature_extraction
+        index: Index of Galaxy for which to process data. If None, process all galaxies.
         percent_subset: Returns a subset of the data of this size (percent).
 
     Returns: A Tuple containing (X, y), with X being the features and y the labels.
