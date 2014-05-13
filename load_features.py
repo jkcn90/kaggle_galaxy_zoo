@@ -84,7 +84,7 @@ def main(input_directory, output_file, feature_extraction_func, scale_features=T
             clf = manifold.LocallyLinearEmbedding(n_neighbors=9, n_components=6,
                                                   eigen_solver='dense')
             X_lle = clf.fit_transform(feature_vectors)
-            feature_vectors = pd.DataFrame(X_lle, feature_vectors.index, feature_vectors.columns)
+            feature_vectors = pd.DataFrame(X_lle, feature_vectors.index)
 
         # Serialize the feature vector so we can try different algorithms without running the
         # feature extraction process again
