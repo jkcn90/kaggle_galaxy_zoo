@@ -80,8 +80,9 @@ def main(input_directory, output_file, feature_extraction_func, scale_features=T
                                                           scale_features, restricted_universe)
 
         if lle:
+            print('Running lle...')
             clf = manifold.LocallyLinearEmbedding(n_neighbors=9, n_components=6,
-                    eigen_solver='dense')
+                                                  eigen_solver='dense')
             X_lle = clf.fit_transform(feature_vectors)
             feature_vectors = pd.DataFrame(X_lle, feature_vectors.index, feature_vectors.columns)
 
