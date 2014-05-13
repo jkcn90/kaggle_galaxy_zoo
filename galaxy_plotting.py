@@ -5,7 +5,7 @@ from tsne import bh_sne
 from mpld3 import plugins, utils
 from matplotlib import pyplot as plt
 
-def plot_projection(X, y):
+def plot_projection(X, y, tsne_trigger=True):
     """Plots a reduced version of the data with t-sne.
 
     Attributes:
@@ -15,7 +15,10 @@ def plot_projection(X, y):
     galaxy_ids = y.index.values.tolist()
     classinfo = y.values.tolist()
 
-    X_projected = bh_sne(X.astype(np.float64))
+    if tsne_trigger:
+        X_projected = bh_sne(X.astype(np.float64))
+    else:
+        X_projected = X
 
     (fig, ax) = plt.subplots(nrows=1, ncols=2, figsize=(14, 7))
     points = ax[0].scatter(X_projected[:,0], X_projected[:,1], s=300, alpha=0.3, c=y, cmap=plt.cm.autumn)
@@ -83,7 +86,7 @@ class Load_Galaxy(plugins.PluginBase):
             var galaxyid = galaxyids[i]
             tooltip.text("GalaxyID: " + galaxyid);
             tooltip.append("img")
-            .attr("src", "files/input_data/images_training_rev1/" + galaxyid + ".jpg")
+            .attr("src", "input_data/images_training_rev1/" + galaxyid + ".jpg")
             .attr("x", -8)
             .attr("y", -8)
             .attr("width", 500)                  

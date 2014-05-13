@@ -52,7 +52,7 @@ def raw_all(path):
     feature_vector = _add_galaxy_id(path, feature_vector)
     return feature_vector
 
-def raw(path, rotate_images=False, cropped_size=9):
+def raw(path, rotate_images=False, cropped_size=100):
     img = cv.Image(path)
 
     # Find the largest blob in the image and crop around it
@@ -74,9 +74,12 @@ def raw(path, rotate_images=False, cropped_size=9):
     bounding_box_xywh = largest_blob.boundingBox()
 
     center = largest_blob.centroid()
-    max_dim = max(bounding_box_xywh[2], bounding_box_xywh[3])
-    xywh = center+(max_dim, max_dim)
-    cropped_image = img.crop(xywh, centered=True)
+    max_dim = max(bounding_box_xywh[2], bounding_box_xywh[3])*1.3
+    if max_dim <= 424:
+        xywh = center+(max_dim, max_dim)
+        cropped_image = img.crop(xywh, centered=True)
+    else:
+        cropped_image = img
 
     # Return the raw array scaled to a feasible size
     cropped_image = cropped_image.resize(cropped_size, cropped_size)
