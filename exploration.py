@@ -22,8 +22,8 @@ def get_reduced_solutions(solutions=None, upper_threshold=1, lower_threshold=0, 
     else:
         print_trigger = False
 
-    solutions = solutions[["Class1.1", "Class1.2", "Class1.3"]]
-    
+    solutions = solutions[['Class1.1', 'Class1.2', 'Class1.3']]
+
     index = solutions.applymap(lambda x: x <= upper_threshold and x >= lower_threshold)
     index_df = solutions[index]
     index_df = index_df.dropna(how='all')
@@ -53,9 +53,9 @@ def extract_features(extraction_method, index=None, percent_subset=100, classifi
         data.set_restricted_universe(index)
 
     if percent_subset == 100:
-        (X, y) = data.get_training_data()
+        (X, y) = data.get_training_data(competition=True)
     else:
-        (X, y, _, _) = data.split_training_and_validation_data(100-percent_subset)
+        (X, y, _, _) = data.split_training_and_validation_data(100-percent_subset, competition=True)
 
     y = get_reduced_solutions(y, classification=classification)
     return (X, y)

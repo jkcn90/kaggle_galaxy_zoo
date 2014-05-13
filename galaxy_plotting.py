@@ -106,7 +106,7 @@ class Load_Galaxy(plugins.PluginBase):
             var galaxyid = galaxyids[i]
             var y = classinfo[i]
 
-            galaxyimage.attr("xlink:href", "files/input_data/images_training_rev1/" + galaxyid + ".jpg")
+            galaxyimage.attr("xlink:href", "input_data/images_training_rev1/" + galaxyid + ".jpg")
             galaxyclass1.text("Class1.1:     " + y[0])
             galaxyclass2.text("Class1.2:     " + y[1])
             galaxyclass3.text("Class1.3:     " + y[2])

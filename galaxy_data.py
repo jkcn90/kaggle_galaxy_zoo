@@ -119,7 +119,7 @@ class GalaxyData:
 
         return (feature_vectors, solutions)
 
-    def split_training_and_validation_data(self, percent_validation=25, seed=None):
+    def split_training_and_validation_data(self, percent_validation=25, seed=None, competition=False):
         """Splits the training data into training and validation data
 
         Args:
@@ -130,7 +130,7 @@ class GalaxyData:
                  validation_solutions.
         """
         percent_validation /= 100.0
-        (feature_vectors, solutions) = self.get_training_data()
+        (feature_vectors, solutions) = self.get_training_data(competition=competition)
 
         # Randomly split the training and validation data
         random.seed(seed)
