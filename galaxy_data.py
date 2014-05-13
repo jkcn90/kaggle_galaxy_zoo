@@ -21,7 +21,8 @@ class GalaxyData:
         solutions_csv: The location of the training solutions csv file
     """
 
-    def __init__(self, feature_extraction_func=feature_extraction.default, scale_features=True):
+    def __init__(self, feature_extraction_func=feature_extraction.default, scale_features=True,
+                 lle=False):
         """Initializes the GalaxyData class with file directories and file locations. Ensures the
            creation of the output directory.
         """
@@ -35,6 +36,7 @@ class GalaxyData:
 
         self.restricted_universe = None
         self.scale_features = scale_features
+        self.lle = lle
 
         self.folder_setup()
 
@@ -76,7 +78,8 @@ class GalaxyData:
         feature_vectors = load_features.main(images_directory, feature_vectors_file,
                                              self.feature_extraction_func,
                                              self.scale_features,
-                                             self.restricted_universe)
+                                             self.restricted_universe,
+                                             self.lle)
 
         solutions = pd.read_csv(self.solutions_csv, index_col='GalaxyID')
 

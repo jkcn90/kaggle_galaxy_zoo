@@ -52,7 +52,7 @@ def raw_all(path):
     feature_vector = _add_galaxy_id(path, feature_vector)
     return feature_vector
 
-def raw(path, rotate_images=False, cropped_size=100):
+def raw(path, rotate_images=False, cropped_size=9):
     img = cv.Image(path)
 
     # Find the largest blob in the image and crop around it

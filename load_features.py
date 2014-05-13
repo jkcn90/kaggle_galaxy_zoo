@@ -5,7 +5,7 @@ import glob
 import pandas as pd
 import multiprocessing
 
-from sklearn import preprocessing
+from sklearn import (preprocessing, manifold)
 
 def extract_features_from_directory(input_directory, feature_extraction_func, scale_features=True,
                                     restricted_universe=None):
@@ -55,7 +55,7 @@ def extract_features_from_directory(input_directory, feature_extraction_func, sc
     return feature_vectors
 
 def main(input_directory, output_file, feature_extraction_func, scale_features=True,
-         restricted_universe=None):
+         restricted_universe=None, lle=False):
     """Extract feature vectors from a directory of jpeg's and save a copy to file.
 
     If the feature vectors in question have already been serialized, load them in.
@@ -66,6 +66,7 @@ def main(input_directory, output_file, feature_extraction_func, scale_features=T
         features_exctraction_func: The function with which to extract features with.
         scale_features: Scale the feature vectors.
         restricted_universe: Restricted universe of GalaxyID.
+        lle: Run lle on data.
 
     Returns:
         A pandas DataFrame object containing the feature vectors.
@@ -77,6 +78,12 @@ def main(input_directory, output_file, feature_extraction_func, scale_features=T
         print('Extracting Feature Vectors From Images:')
         feature_vectors = extract_features_from_directory(input_directory, feature_extraction_func,
                                                           scale_features, restricted_universe)
+
+        if lle:
+            clf = manifold.LocallyLinearEmbedding(n_neighbors=9, n_components=6,
+                    eigen_solver='dense')
+            X_lle = clf.fit_transform(feature_vectors)
+            feature_vectors = pd.DataFrame(X_lle, feature_vectors.index, feature_vectors.columns)
 
         # Serialize the feature vector so we can try different algorithms without running the
         # feature extraction process again
