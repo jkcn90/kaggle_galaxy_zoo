@@ -60,7 +60,7 @@ class GalaxyData:
         """
         feature_vectors_file = os.path.join(self.output_directory, 'feature_vectors_training')
         (feature_vectors, solutions) = self._get_data(self.training_images_directory,
-                                                      feature_vectors_file)
+                                                      feature_vectors_file, competition)
         if not competition:
             (index, _) = self.get_training_test_index()
             feature_vectors = feature_vectors.ix[index]
@@ -77,7 +77,8 @@ class GalaxyData:
         """
         if competition:
             feature_vectors_file = os.path.join(self.output_directory, 'feature_vectors_test')
-            (feature_vectors, _) = self._get_data(self.test_images_directory, feature_vectors_file)
+            (feature_vectors, _) = self._get_data(self.test_images_directory, feature_vectors_file,
+                                                  competition)
             solutions = None
         else:
             feature_vectors_file = os.path.join(self.output_directory, 'feature_vectors_training')
@@ -95,7 +96,7 @@ class GalaxyData:
                                                          random_state=random_state)
         return (training_index, test_index)
 
-    def _get_data(self, images_directory, feature_vectors_file):
+    def _get_data(self, images_directory, feature_vectors_file, competition=False):
         """Gets the feature vectors and solutions for the specified data.
 
         Loads the feature vectors directly from the images, or if they have already been loaded,
@@ -113,7 +114,8 @@ class GalaxyData:
 
         # Align the solutions to the GalaxyID of the feature_vectors
         solutions = solutions.ix[feature_vectors.index]
-        solutions = solutions[['Class1.1', 'Class1.2', 'Class1.3']]
+        if not competition:
+            solutions = solutions[['Class1.1', 'Class1.2', 'Class1.3']]
 
         return (feature_vectors, solutions)
 
