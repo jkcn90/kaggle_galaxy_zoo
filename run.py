@@ -33,7 +33,7 @@ def competition_run():
     data = GalaxyData()
 
     (training_features, training_solutions) = data.get_training_data()
-    test_features = data.get_test_data()
+    (test_features, _) = data.get_test_data()
 
     # Predict
     (clf, columns) = models.default_model(training_features, training_solutions, 5)
