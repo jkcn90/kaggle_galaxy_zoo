@@ -113,6 +113,7 @@ class GalaxyData:
 
         # Align the solutions to the GalaxyID of the feature_vectors
         solutions = solutions.ix[feature_vectors.index]
+        solutions = solutions[['Class1.1', 'Class1.2', 'Class1.3']]
 
         return (feature_vectors, solutions)
 

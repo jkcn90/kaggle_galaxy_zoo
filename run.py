@@ -17,7 +17,7 @@ def run(model, verbose=0):
         model: model function to run.
     """
     # Load the data and split into training and validation sets
-    data = GalaxyData(scale_features=False, lle=True)
+    data = GalaxyData(scale_features=False)
 
     (training_features, training_solutions,
      validation_features, validation_solutions) = data.split_training_and_validation_data(50)
