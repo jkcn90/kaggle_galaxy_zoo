@@ -2,6 +2,7 @@ from __future__ import print_function
 
 import os
 import glob
+import random
 import pandas as pd
 import multiprocessing
 
@@ -22,12 +23,13 @@ def extract_features_from_directory(input_directory, feature_extraction_func):
 
     # Setup parallel processing
     print('Extracting Features ...')
-    pool_size = multiprocessing.cpu_count() * 2
-    chunk_size = number_of_images // pool_size
 
+    pool_size = multiprocessing.cpu_count()*2
+    chunk_size = number_of_images // pool_size
+ 
     pool = multiprocessing.Pool(pool_size, maxtasksperchild=2)
     feature_vectors = pool.map(feature_extraction_func, jpg_files, chunk_size)
-
+ 
     pool.close()
     pool.join()
     print('Finished Extracting Features')

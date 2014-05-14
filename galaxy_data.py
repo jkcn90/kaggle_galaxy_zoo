@@ -28,7 +28,7 @@ class GalaxyData:
         self.feature_extraction_func = feature_extraction_func
         self.output_directory = os.path.join(OUTPUT_DIRECTORY, self.feature_extraction_func.__name__)
 
-        self.training_images_directory = os.path.join(INPUT_DIRECTORY, 'images_training_rev1')
+        self.training_images_directory = os.path.join(INPUT_DIRECTORY, 'images_training_rev1_sub')
         self.test_images_directory = os.path.join(INPUT_DIRECTORY, 'images_test_rev1')
 
         self.solutions_csv = os.path.join(INPUT_DIRECTORY, 'training_solutions_rev1.csv')

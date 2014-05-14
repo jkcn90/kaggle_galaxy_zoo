@@ -9,6 +9,7 @@ def get_rmse(actual, predicted):
         actual: actual values.
         predicted: predicted values.
     """
-    rmse = math.sqrt(mean_squared_error(actual, predicted))
+    predicted.iloc[:,0:3].to_csv("HoGPredictions.csv")
+    rmse = math.sqrt(mean_squared_error(actual.iloc[:,0:3], predicted.iloc[:,0:3]))
     print('RMSE: ' + str(100*rmse) + '%')
     return rmse
