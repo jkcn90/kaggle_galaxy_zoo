@@ -31,7 +31,7 @@ class GalaxyData:
         self.feature_extraction_func = feature_extraction_func
         self.output_directory = os.path.join(OUTPUT_DIRECTORY, self.feature_extraction_func.__name__)
 
-        self.training_images_directory = os.path.join(INPUT_DIRECTORY, 'images_training_rev1_sub')
+        self.training_images_directory = os.path.join(INPUT_DIRECTORY, 'images_training_rev1')
         self.test_images_directory = os.path.join(INPUT_DIRECTORY, 'images_test_rev1')
 
         self.solutions_csv = os.path.join(INPUT_DIRECTORY, 'training_solutions_rev1.csv')
@@ -61,10 +61,12 @@ class GalaxyData:
         feature_vectors_file = os.path.join(self.output_directory, 'feature_vectors_training')
         (feature_vectors, solutions) = self._get_data(self.training_images_directory,
                                                       feature_vectors_file, competition)
+
         if not competition:
             (index, _) = self.get_training_test_index()
             feature_vectors = feature_vectors.ix[index]
             solutions = solutions.ix[index]
+            
         return (feature_vectors, solutions)
 
     def get_test_data(self, competition=False):
@@ -131,6 +133,7 @@ class GalaxyData:
         """
         percent_validation /= 100.0
         (feature_vectors, solutions) = self.get_training_data(competition=competition)
+
 
         # Randomly split the training and validation data
         random.seed(seed)

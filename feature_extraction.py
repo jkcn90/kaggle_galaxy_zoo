@@ -3,10 +3,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from scipy import ndimage as nd
-# try:
-#     import SimpleCV as cv
-# except:
-#     print('Warning: Running without SimpleCV')
+try:
+    import SimpleCV as cv
+except:
+    print('Warning: Running without SimpleCV')
 from skimage import io
 from skimage import color
 from skimage.transform import resize
