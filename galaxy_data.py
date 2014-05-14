@@ -8,8 +8,8 @@ import feature_extraction
 
 from sklearn import cross_validation
 
-INPUT_DIRECTORY = 'input_data'
-OUTPUT_DIRECTORY = 'output_data'
+INPUT_DIRECTORY = '../../data/proc_images/'
+OUTPUT_DIRECTORY = '../../data/proc_images/'
 
 class GalaxyData:
     """Loads and processes the data required for operating on the GalaxyZoo data.
@@ -61,10 +61,12 @@ class GalaxyData:
         feature_vectors_file = os.path.join(self.output_directory, 'feature_vectors_training')
         (feature_vectors, solutions) = self._get_data(self.training_images_directory,
                                                       feature_vectors_file, competition)
+
         if not competition:
             (index, _) = self.get_training_test_index()
             feature_vectors = feature_vectors.ix[index]
             solutions = solutions.ix[index]
+            
         return (feature_vectors, solutions)
 
     def get_test_data(self, competition=False):
@@ -131,6 +133,7 @@ class GalaxyData:
         """
         percent_validation /= 100.0
         (feature_vectors, solutions) = self.get_training_data(competition=competition)
+
 
         # Randomly split the training and validation data
         random.seed(seed)

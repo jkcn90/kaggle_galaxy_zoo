@@ -6,6 +6,7 @@ from sklearn.ensemble import ExtraTreesRegressor
 from sklearn.ensemble import AdaBoostRegressor
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.linear_model import LinearRegression
 from sklearn import svm
 
 def default_model(features, solutions, verbose=0):
@@ -48,7 +49,7 @@ def gradient_boost_model(features, solutions, verbose=0):
 def random_forest_model(features, solutions, verbose=0):
     columns = solutions.columns
 
-    clf = RandomForestRegressor(100, max_features='log2', n_jobs=-1, verbose=verbose)
+    clf = RandomForestRegressor(30, max_features='log2', n_jobs=-1, verbose=verbose)
 
     print('Training Model... ')
     clf.fit(features, solutions)
@@ -78,5 +79,6 @@ def predict(clf, features, columns):
     predicted_solutions = clf.predict(features)
     predicted_solutions = pd.DataFrame(predicted_solutions, index=features.index,
                                        columns=columns)
+    predicted_solutions.to_csv("./results/predictions_hog.csv")
     print('Done Predicting')
     return predicted_solutions

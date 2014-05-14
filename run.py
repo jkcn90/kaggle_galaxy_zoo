@@ -7,6 +7,9 @@ import evaluate
 import galaxy_data
 import feature_extraction
 
+import warnings
+warnings.filterwarnings('error')
+
 from galaxy_data import GalaxyData
 from sklearn import cross_validation
 
