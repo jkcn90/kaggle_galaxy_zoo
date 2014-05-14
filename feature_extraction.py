@@ -3,16 +3,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from scipy import ndimage as nd
-try:
-    import SimpleCV as cv
-except:
-    print('Warning: Running without SimpleCV')
+# try:
+#     import SimpleCV as cv
+# except:
+#     print('Warning: Running without SimpleCV')
 from skimage import io
 from skimage import color
 from skimage.transform import resize
 from skimage.feature import hog
 from skimage import exposure
 from skimage.filter import threshold_otsu
+from skimage.restoration import denoise_tv_chambolle
 from skimage.morphology import label
 from skimage.measure import regionprops
 from skimage import transform
@@ -104,7 +105,7 @@ def hog_features(path):
     galaxy_image = exposure.rescale_intensity(galaxy_image, out_range=(0,255))    # Improving contrast
     galaxy_image = rotateImage(galaxy_image)
     galaxy_image = denoise_tv_chambolle(galaxy_image, weight=0.15)
-    fd = hog(galaxy_image, orientations=8, pixels_per_cell=(12, 12),
+    fd = hog(galaxy_image, orientations=8, pixels_per_cell=(8, 8),
                     cells_per_block=(1, 1), visualise=False)
 
     print fd.shape
