@@ -3,10 +3,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from scipy import ndimage as nd
-try:
-    import SimpleCV as cv
-except:
-    print('Warning: Running without SimpleCV')
+# try:
+#     import SimpleCV as cv
+# except:
+#     print('Warning: Running without SimpleCV')
 from skimage import io
 from skimage import color
 from skimage.transform import resize
@@ -103,7 +103,7 @@ def hog_features(path):
     print "Processing image: ", path.split("/")[-1]
     galaxy_image = io.imread(path, as_grey=True)
     galaxy_image = exposure.rescale_intensity(galaxy_image, out_range=(0,255))    # Improving contrast
-    galaxy_image = rotateImage(galaxy_image)
+#     galaxy_image = rotateImage(galaxy_image)
     galaxy_image = denoise_tv_chambolle(galaxy_image, weight=0.15)
     fd = hog(galaxy_image, orientations=8, pixels_per_cell=(8, 8),
                     cells_per_block=(1, 1), visualise=False)
@@ -116,14 +116,11 @@ def compute_gabor_feats(image, kernels):
     '''
     Compute gabor kernel features
     '''
-    feats = np.zeros(4*len(kernels), dtype=np.double)
+    feats = np.zeros(2*len(kernels), dtype=np.double)
     for k, kernel in enumerate(kernels):
         filtered_real = nd.convolve(image, np.real(kernel), mode='wrap')
-        feats[4*k] = filtered_real.mean()
-        feats[4*k+1] = filtered_real.var()
-        filtered_img = nd.convolve(image, np.imag(kernel), mode='wrap')
-        feats[4*k+2] = filtered_real.mean()
-        feats[4*k+3] = filtered_real.var()
+        feats[2*k] = filtered_real.mean()
+        feats[2*k+1] = filtered_real.var()
     return feats
 
             
@@ -135,7 +132,7 @@ def gabor_kernel_features(path):
     kernels = []
     for theta in [0, 1, 2, 3]:
         theta = theta / 4. * np.pi
-        for frequency in (0.05, 0.1, 0.2, 03, 0.4, 0.5, 0.6, 0.7):
+        for frequency in (0.05, 0.3, 0.5, 0.7):
             kernel = gabor_kernel(frequency, theta=theta)
             kernels.append(kernel)
     galaxy_image = (galaxy_image-galaxy_image.mean())/galaxy_image.std()

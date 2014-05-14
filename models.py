@@ -1,16 +1,17 @@
 import pandas as pd
 
-from sklearn.ensemble import RandomForestRegressor
+
+from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import ExtraTreesRegressor
 from sklearn.ensemble import AdaBoostRegressor
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, MultiTaskLasso
 from sklearn import svm
 
 def default_model(features, solutions, verbose=0):
-    return random_forest_model(features, solutions, verbose)
+    return ada_boost_model(features, solutions, verbose)
 
 def test_model(features, solutions, verbose=0):
     columns = solutions.columns[:1]
@@ -24,11 +25,10 @@ def test_model(features, solutions, verbose=0):
     return (clf, columns)
 
 def ada_boost_model(features, solutions, verbose=0):
-    columns = solutions.columns[:1]
-    solutions = solutions[columns[0]]
+    columns = solutions.columns
 
-    clf = DecisionTreeRegressor(max_depth=1)
-    clf = AdaBoostRegressor(clf, n_estimators=100)
+    clf = DecisionTreeRegressor(max_depth=10)
+    clf = AdaBoostRegressor(clf, n_estimators=20)
 
     print('Training Model... ')
     clf.fit(features, solutions)
@@ -39,7 +39,7 @@ def gradient_boost_model(features, solutions, verbose=0):
     columns = solutions.columns[:1]
     solutions = solutions[columns[0]]
 
-    clf = GradientBoostingRegressor(loss='ls', max_features='log2', verbose=verbose)
+    clf = GradientBoostingRegressor(loss='ls', max_features='auto', verbose=verbose)
 
     print('Training Model... ')
     clf.fit(features, solutions)
@@ -49,7 +49,27 @@ def gradient_boost_model(features, solutions, verbose=0):
 def random_forest_model(features, solutions, verbose=0):
     columns = solutions.columns
 
-    clf = RandomForestRegressor(30, max_features='log2', n_jobs=-1, verbose=verbose)
+    clf = RandomForestRegressor(100, max_features='log2', n_jobs=-1, verbose=verbose)
+
+    print('Training Model... ')
+    clf.fit(features, solutions)
+    print('Done Training')
+    return (clf, columns)
+
+def knn_regressor(features, solutions, verbose=0):
+    columns = solutions.columns
+
+    clf = KNeighborsRegressor(n_neighbors=5, weights='distance')
+
+    print('Training Model... ')
+    clf.fit(features, solutions)
+    print('Done Training')
+    return (clf, columns)
+
+def mulri_task_lasso(features, solutions, verbose=0):
+    columns = solutions.columns
+
+    clf = MultiTaskLasso(alpha=0.1)
 
     print('Training Model... ')
     clf.fit(features, solutions)

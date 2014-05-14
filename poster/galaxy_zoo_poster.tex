@@ -310,7 +310,7 @@
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    \headerbox{Feature Evaluation}{name=speed,column=2,row=0,span=2}{
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+   We evaluate the feature by comparing RMSE on the best hyper-parameter setting of Random Forest Regression. The table below shows the RMSE values for both features.
    }
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -326,11 +326,7 @@
 
    \headerbox{Model Evaluation}{name=tracking,column=2,span=2,below=speed,above=bottom}{
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- {
- }
-   \begin{multicols}{2}
-  
-   \end{multicols}
+  We found that, hand engineered perform better in our setting. So we evaluate, hand engineered features to choose between random forest regression and multi-task lasso regression. We show the training error and validation error for different setting of hyper-parameters. 
 }
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

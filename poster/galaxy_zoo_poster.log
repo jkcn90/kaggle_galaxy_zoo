@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  14 MAY 2014 11:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  14 MAY 2014 14:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -898,10 +898,10 @@ Missing character: There is no ; in font nullfont!
 File: images/HoG_features_noisy.png Graphic file (type png)
 
 <use images/HoG_features_noisy.png>
-Package pdftex.def Info: images/HoG_features_noisy.png used on input line 342.
+Package pdftex.def Info: images/HoG_features_noisy.png used on input line 338.
 (pdftex.def)             Requested size: 214.21138pt x 107.10349pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 342--342
+Underfull \hbox (badness 10000) in paragraph at lines 338--338
 [][]
  []
 
@@ -917,7 +917,7 @@ rch.jpg> <./images/HoG_features.png> <./images/HoG_features_noisy.png>]
 Here is how much of TeX's memory you used:
  15544 strings out of 493315
  293465 string characters out of 6137904
- 568201 words of memory out of 5000000
+ 569418 words of memory out of 5000000
  18623 multiletter control sequences out of 15000+600000
  26271 words of font info for 58 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -930,7 +930,7 @@ c/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public
 msfonts/cm/cmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmsy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmtt12.pfb>
-Output written on galaxy_zoo_poster.pdf (1 page, 540356 bytes).
+Output written on galaxy_zoo_poster.pdf (1 page, 541986 bytes).
 PDF statistics:
  64 PDF objects out of 1000 (max. 8388607)
  29 compressed objects within 1 object stream
