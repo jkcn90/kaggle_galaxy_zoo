@@ -6,8 +6,10 @@ import pandas as pd
 import load_features
 import feature_extraction
 
-INPUT_DIRECTORY = '../../data/proc_images/'
-OUTPUT_DIRECTORY = '../../data/proc_images'
+from sklearn import cross_validation
+
+INPUT_DIRECTORY = 'input_data'
+OUTPUT_DIRECTORY = 'output_data'
 
 class GalaxyData:
     """Loads and processes the data required for operating on the GalaxyZoo data.
@@ -21,7 +23,8 @@ class GalaxyData:
         solutions_csv: The location of the training solutions csv file
     """
 
-    def __init__(self, feature_extraction_func=feature_extraction.default):
+    def __init__(self, feature_extraction_func=feature_extraction.default, scale_features=True,
+                 lle=False):
         """Initializes the GalaxyData class with file directories and file locations. Ensures the
            creation of the output directory.
         """
@@ -33,28 +36,67 @@ class GalaxyData:
 
         self.solutions_csv = os.path.join(INPUT_DIRECTORY, 'training_solutions_rev1.csv')
 
+        self.restricted_universe = None
+        self.scale_features = scale_features
+        self.lle = lle
+
         self.folder_setup()
 
-    def get_training_data(self):
+    def set_restricted_universe(self, restricted_universe):
+        """Sets restricted universe of GalaxyID to load
+
+        Args:
+            restricted_universe: Restricted universe of GalaxyID.
+        """
+        self.restricted_universe = restricted_universe
+
+    def get_training_data(self, competition=False):
         """Gets the feature vectors and solutions for the training data.
+
+        Args:
+            competition: Trigger to determine competition or regular function
 
         Returns: A tuple containing (feature_vectors, solutions)
         """
         feature_vectors_file = os.path.join(self.output_directory, 'feature_vectors_training')
         (feature_vectors, solutions) = self._get_data(self.training_images_directory,
-                                                      feature_vectors_file)
+                                                      feature_vectors_file, competition)
+        if not competition:
+            (index, _) = self.get_training_test_index()
+            feature_vectors = feature_vectors.ix[index]
+            solutions = solutions.ix[index]
         return (feature_vectors, solutions)
 
-    def get_test_data(self):
+    def get_test_data(self, competition=False):
         """Gets the feature vectors and solutions for the test data.
+
+        Args:
+            competition: Trigger to determine competition or regular function
 
         Returns: A tuple containing (feature_vectors, solutions)
         """
-        feature_vectors_file = os.path.join(self.output_directory, 'feature_vectors_test')
-        (feature_vectors, _) = self._get_data(self.test_images_directory, feature_vectors_file)
-        return feature_vectors
+        if competition:
+            feature_vectors_file = os.path.join(self.output_directory, 'feature_vectors_test')
+            (feature_vectors, _) = self._get_data(self.test_images_directory, feature_vectors_file,
+                                                  competition)
+            solutions = None
+        else:
+            feature_vectors_file = os.path.join(self.output_directory, 'feature_vectors_training')
+            (feature_vectors, solutions) = self._get_data(self.training_images_directory,
+                                                          feature_vectors_file)
+            (_, index) = self.get_training_test_index()
+            feature_vectors = feature_vectors.ix[index]
+            solutions = solutions.ix[index]
+        return (feature_vectors, solutions)
 
-    def _get_data(self, images_directory, feature_vectors_file):
+    def get_training_test_index(self, test_size=0.5, random_state=0):
+        index = pd.read_csv(self.solutions_csv, index_col='GalaxyID').index
+        (training_index,
+         test_index) = cross_validation.train_test_split(index, test_size=test_size,
+                                                         random_state=random_state)
+        return (training_index, test_index)
+
+    def _get_data(self, images_directory, feature_vectors_file, competition=False):
         """Gets the feature vectors and solutions for the specified data.
 
         Loads the feature vectors directly from the images, or if they have already been loaded,
@@ -63,16 +105,21 @@ class GalaxyData:
         Returns: A tuple containing (feature_vectors, solutions)
         """
         feature_vectors = load_features.main(images_directory, feature_vectors_file,
-                                             self.feature_extraction_func)
+                                             self.feature_extraction_func,
+                                             self.scale_features,
+                                             self.restricted_universe,
+                                             self.lle)
 
         solutions = pd.read_csv(self.solutions_csv, index_col='GalaxyID')
 
         # Align the solutions to the GalaxyID of the feature_vectors
         solutions = solutions.ix[feature_vectors.index]
+        if not competition:
+            solutions = solutions[['Class1.1', 'Class1.2', 'Class1.3']]
 
         return (feature_vectors, solutions)
 
-    def split_training_and_validation_data(self, percent_validation=25, seed=None):
+    def split_training_and_validation_data(self, percent_validation=25, seed=None, competition=False):
         """Splits the training data into training and validation data
 
         Args:
@@ -83,7 +130,7 @@ class GalaxyData:
                  validation_solutions.
         """
         percent_validation /= 100.0
-        (feature_vectors, solutions) = self.get_training_data()
+        (feature_vectors, solutions) = self.get_training_data(competition=competition)
 
         # Randomly split the training and validation data
         random.seed(seed)
