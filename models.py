@@ -11,7 +11,7 @@ from sklearn.linear_model import LinearRegression, MultiTaskLasso
 from sklearn import svm
 
 def default_model(features, solutions, verbose=0):
-    return ada_boost_model(features, solutions, verbose)
+    return random_forest_model(features, solutions, verbose)
 
 def test_model(features, solutions, verbose=0):
     columns = solutions.columns[:1]

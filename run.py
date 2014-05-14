@@ -1,17 +1,16 @@
 import os
 import glob
 import argparse
+import math
 
 import models
 import evaluate
 import galaxy_data
 import feature_extraction
 
-import warnings
-warnings.filterwarnings('error')
-
 from galaxy_data import GalaxyData
 from sklearn import cross_validation
+from sklearn.metrics import mean_squared_error
 
 def run(model, verbose=0):
     """Entry Point to run models
@@ -43,16 +42,23 @@ def competition_run():
     predicted_solutions = models.predict(clf, test_features, columns)
 
     data.save_solution(predicted_solutions)
-
-def cross_validation(model, verbose=0):
-    data = GalaxyData()
+    
+def rmse_scorer(estimator, X, y):
+    y_pred = estimator.predict(X)
+    
+    mse = mean_squared_error(y, y_pred)
+    rmse = math.sqrt(mse)
+    return rmse
+    
+def cross_validationcv(model, verbose=0):
+    data = GalaxyData(feature_extraction.hog_features, scale_features=False)
 
     (features, solutions) = data.get_training_data()
 
     # Train and Predict Model
     (clf, _) = model(features, solutions, verbose)
-    scores = cross_validation.cross_val_score(clf, features, solutions, cv=5)
-    print(scores)
+    scores = cross_validation.cross_val_score(clf, features, solutions, cv=5, scoring=rmse_scorer, n_jobs=-1)
+    print("Cross validation error: ", sum(scores)/len(scores))
 
 def resolve_model_name(name):
     """Gets the model function corresponding to the name.
