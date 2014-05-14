@@ -1,4 +1,5 @@
 import math
+import numpy as np
 
 from sklearn.metrics import mean_squared_error
 
@@ -15,3 +16,27 @@ def get_rmse(actual, predicted):
     rmse = math.sqrt(mean_squared_error(actual, predicted))
     print('RMSE: ' + str(100*rmse) + '%')
     return rmse
+
+def cross_validate(clf, X, y, cv):
+    index = X.index
+    num_images = index.shape[0]
+    slice_size = num_images / cv
+
+    rmse_list = []
+
+    for i in range(0, cv):
+        validate_index = index[i*slice_size:(i+1)*slice_size]
+        train_index = index.drop(validate_index)
+
+        X_validate = X.ix[validate_index]
+        X_train = X.ix[train_index]
+
+        y_validate = y.ix[validate_index]
+        y_train = y.ix[train_index]
+
+        y_predicted = clf.fit(X_train, y_train)
+        rmse = math.sqrt(mean_squared_error(y_validate, y_predicted))
+        rmse_list.append(rmse)
+
+    rmse_list = np.array(rmse_list)
+    return rmse_list
