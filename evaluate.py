@@ -17,6 +17,11 @@ def get_rmse(actual, predicted):
     print('RMSE: ' + str(100*rmse) + '%')
     return rmse
 
+def get_rmse_clf(estimator, X, y):
+    y_predicted = estimator.predict(X)
+    rmse = math.sqrt(mean_squared_error(y, y_predicted))
+    return rmse
+
 def cross_validate(clf, X, y, cv=5):
     if cv < 2:
         raise Exception("cv must be greater than 2")
@@ -39,8 +44,7 @@ def cross_validate(clf, X, y, cv=5):
         
         # Get rmse
         clf.fit(X_train, y_train)
-        y_predicted = clf.predict(X_validate)
-        rmse = math.sqrt(metrics.mean_squared_error(y_validate, y_predicted))
+        rmse = get_rmse_clf(clf, X_validate, y_validate)
         rmse_list.append(rmse)
     rmse_list = np.array(rmse_list)
     return rmse_list
