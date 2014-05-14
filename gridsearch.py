@@ -13,3 +13,4 @@ parameters = {'max_depth': [5, 10, 15, 20, 25, 30]}
 gs = grid_search.GridSearchCV(clf, param_grid=parameters, scoring=evaluate.get_rmse_clf, n_jobs=-1,
         cv=5, verbose=5)
 gs.fit(X_train, y_train)
+print(gs.grid_scores_)
