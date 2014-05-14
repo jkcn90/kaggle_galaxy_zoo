@@ -34,7 +34,9 @@ def cross_validate(clf, X, y, cv):
         y_validate = y.ix[validate_index]
         y_train = y.ix[train_index]
 
-        y_predicted = clf.fit(X_train, y_train)
+        clf.fit(X_train, y_train)
+
+        (y, y_predicted) = (y_validate.values, clf.predict(X_validate))
         rmse = math.sqrt(mean_squared_error(y_validate, y_predicted))
         rmse_list.append(rmse)
 
