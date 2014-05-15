@@ -310,7 +310,15 @@
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    \headerbox{Feature Evaluation}{name=speed,column=2,row=0,span=2}{
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   We evaluate the feature by comparing RMSE on the best hyper-parameter setting of Random Forest Regression. The table below shows the RMSE values for both features.
+   We evaluate the feature by comparing RMSE on the best hyper-parameter setting of Random Forest Regression. We use 5-fold cross-validation and hold number of trees in the random forest fixed to 100. The figure below shows RMSE for HoG and Raw Pixel based features. Clearly, raw pixel based features are much better than HoG features. 
+   
+	\includegraphics[width=0.4\linewidth]{HoGVsRawFeats.png}   
+	\includegraphics[width=0.35\linewidth]{HoGHeatMap.png}  
+	
+	To understand why raw pixel based features perform better, we look at the feature importance score calculated across different decision trees in the forest. The importance score is calculated considering, top nodes in decision trees are more important. The heat-map plot features importance for each channel and each pixel of $9 \times 9$. We also plot, similar heat-map for HoG features, but we sum the feature importance of 8 bins to obtain the importance of each $8 \times 8$ patch, so that there are $13 \times 13$ patches. Intuitively, raw pixels have higher number of regions as important features. Also, they have active features in the corners which can identify artifacts, and spiral edges better than HoG features.
+	
+	\includegraphics[width=0.8\linewidth]{heat_map_raw_rgba.jpg}  
+   
    }
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -326,7 +334,9 @@
 
    \headerbox{Model Evaluation}{name=tracking,column=2,span=2,below=speed,above=bottom}{
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  We found that, hand engineered perform better in our setting. So we evaluate, hand engineered features to choose between random forest regression and multi-task lasso regression. We show the training error and validation error for different setting of hyper-parameters. 
+  We evaluate random forest regression and multi-task lasso using raw pixel based features. Below are the charts of validation error for different setting of hyper-parameters. We find that, random forest regression performs better than lasso, mainly because kind of noise, we have in the data-set is due to translation, rotation and texture, for which non-linear methods in computer vision have been found more useful. We report the cross-validation error using multi-task lasso regression below:
+  
+  \includegraphics[width=0.35\linewidth]{lasso_cv.png}
 }
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
