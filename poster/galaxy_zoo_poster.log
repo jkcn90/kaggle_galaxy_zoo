@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  15 MAY 2014 06:19
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  15 MAY 2014 11:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -868,22 +868,22 @@ Missing character: There is no ; in font nullfont!
 File: images/HoGVsRawFeats.png Graphic file (type png)
 
 <use images/HoGVsRawFeats.png>
-Package pdftex.def Info: images/HoGVsRawFeats.png used on input line 322.
+Package pdftex.def Info: images/HoGVsRawFeats.png used on input line 326.
 (pdftex.def)             Requested size: 187.18623pt x 140.38889pt.
 
 <images/HoGHeatMap.png, id=26, 440.847pt x 347.6187pt>
 File: images/HoGHeatMap.png Graphic file (type png)
 
 <use images/HoGHeatMap.png>
-Package pdftex.def Info: images/HoGHeatMap.png used on input line 322.
+Package pdftex.def Info: images/HoGHeatMap.png used on input line 326.
 (pdftex.def)             Requested size: 163.7933pt x 129.15262pt.
 
-<images/heat_map_raw_rgba.jpg, id=27, 1373.13pt x 289.08pt>
+<images/heat_map_raw_rgba.jpg, id=27, 1156.32pt x 289.08pt>
 File: images/heat_map_raw_rgba.jpg Graphic file (type jpg)
 
 <use images/heat_map_raw_rgba.jpg>
-Package pdftex.def Info: images/heat_map_raw_rgba.jpg used on input line 322.
-(pdftex.def)             Requested size: 374.37962pt x 78.81573pt.
+Package pdftex.def Info: images/heat_map_raw_rgba.jpg used on input line 326.
+(pdftex.def)             Requested size: 374.37962pt x 93.59259pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -892,20 +892,43 @@ Missing character: There is no ; in font nullfont!
 File: images/HoG_features_noisy.png Graphic file (type png)
 
 <use images/HoG_features_noisy.png>
-Package pdftex.def Info: images/HoG_features_noisy.png used on input line 331.
+Package pdftex.def Info: images/HoG_features_noisy.png used on input line 339.
 (pdftex.def)             Requested size: 214.21138pt x 107.10349pt.
+
+Underfull \hbox (badness 1975) in paragraph at lines 339--339
+[]\T1/aer/bx/n/10 Histogram of Gra-di-ents (HoG) Fea-tures:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 339--339
+[]
+ []
+
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+<images/lasso_cv.png, id=29, 578.16pt x 433.62pt>
+File: images/lasso_cv.png Graphic file (type png)
+ <use images/lasso_cv.png>
+Package pdftex.def Info: images/lasso_cv.png used on input line 349.
+(pdftex.def)             Requested size: 93.59311pt x 70.19444pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 
-<images/lasso_cv.png, id=29, 578.16pt x 433.62pt>
-File: images/lasso_cv.png Graphic file (type png)
- <use images/lasso_cv.png>
-Package pdftex.def Info: images/lasso_cv.png used on input line 340.
-(pdftex.def)             Requested size: 163.7933pt x 122.84193pt.
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
+<images/hand_engineered_features.jpg, id=30, 578.16pt x 433.62pt>
+File: images/hand_engineered_features.jpg Graphic file (type jpg)
+
+<use images/hand_engineered_features.jpg>
+Package pdftex.def Info: images/hand_engineered_features.jpg used on input line
+ 369.
+(pdftex.def)             Requested size: 214.21138pt x 160.65523pt.
+
+<images/find_k_cv.jpg, id=31, 578.16pt x 433.62pt>
+File: images/find_k_cv.jpg Graphic file (type jpg)
+ <use images/find_k_cv.jpg>
+Package pdftex.def Info: images/find_k_cv.jpg used on input line 369.
+(pdftex.def)             Requested size: 180.38979pt x 135.28757pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -915,16 +938,17 @@ Missing character: There is no ; in font nullfont!
 {/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./image
 s/Class1_1.jpg> <./images/Class1_2.jpg> <./images/Class1_3.jpg> <./images/NYUTo
 rch.jpg> <./images/HoGVsRawFeats.png> <./images/HoGHeatMap.png> <./images/heat_
-map_raw_rgba.jpg> <./images/HoG_features_noisy.png> <./images/lasso_cv.png>]
+map_raw_rgba.jpg> <./images/HoG_features_noisy.png> <./images/lasso_cv.png> <./
+images/hand_engineered_features.jpg> <./images/find_k_cv.jpg>]
 (./galaxy_zoo_poster.aux) ) 
 Here is how much of TeX's memory you used:
- 15559 strings out of 493315
- 293846 string characters out of 6137904
- 573335 words of memory out of 5000000
- 18635 multiletter control sequences out of 15000+600000
+ 15570 strings out of 493315
+ 294160 string characters out of 6137904
+ 579851 words of memory out of 5000000
+ 18644 multiletter control sequences out of 15000+600000
  26271 words of font info for 58 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 63i,13n,70p,749b,936s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,13n,70p,746b,936s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2013/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publi
@@ -933,10 +957,10 @@ c/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public
 msfonts/cm/cmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmsy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmtt12.pfb>
-Output written on galaxy_zoo_poster.pdf (1 page, 544349 bytes).
+Output written on galaxy_zoo_poster.pdf (1 page, 651735 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
+ 72 PDF objects out of 1000 (max. 8388607)
  29 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 154 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 164 words of extra memory for PDF output out of 10000 (max. 10000000)
 

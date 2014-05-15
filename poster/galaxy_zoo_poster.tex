@@ -302,7 +302,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \headerbox{Data Description}{name=abstract,column=0,below=contribution}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   The label for the data-set comes from collaborative tagging effort by citizen in science survey, in which 40-50 people classified each image into one of the categories. The labels are averaged, so we have probability for each class instead of a single label. The data-set we choose for our project is sub-set of this, where in we only consider 3 categories. We are using 30789 in training set and 30789 in the test set. We use 5 fold cross validation for choosing among different features, models and hyper-parameters.
+   The labels for images come from collaborative tagging effort by citizen in science survey, in which 40-50 people classified each image into one of the categories. The labels are averaged, so we have probability for each class instead of a single label. The data-set we choose for our project is sub-set of this, where in we only consider 3 categories. We are using 30789 in training set and 30789 in the test set. We use 5 fold cross validation ( CV ) for choosing among different features, models and hyper-parameters.
  }
 
 
@@ -310,14 +310,18 @@
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    \headerbox{Feature Evaluation}{name=speed,column=2,row=0,span=2}{
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   We evaluate the feature by comparing RMSE on the best hyper-parameter setting of Random Forest Regression. We use 5-fold cross-validation and hold number of trees in the random forest fixed to 100. The figure below shows RMSE for HoG and Raw Pixel based features. Clearly, raw pixel based features are much better than HoG features. 
+   We evaluate features by comparing rmse on the best hyper-parameter setting of Random Forest Regression. We use 5-fold CV and hold number of trees in the forest fixed to 100. The figure below shows RMSE for HoG and Raw Pixel based features. Clearly, raw pixel based features are much better than HoG features. 
    
+    \begin{center}
 	\includegraphics[width=0.4\linewidth]{HoGVsRawFeats.png}   
 	\includegraphics[width=0.35\linewidth]{HoGHeatMap.png}  
+    \end{center}
 	
-	To understand why raw pixel based features perform better, we look at the feature importance score calculated across different decision trees in the forest. The importance score is calculated considering, top nodes in decision trees are more important. The heat-map plot features importance for each channel and each pixel of $9 \times 9$. We also plot, similar heat-map for HoG features, but we sum the feature importance of 8 bins to obtain the importance of each $8 \times 8$ patch, so that there are $13 \times 13$ patches. Intuitively, raw pixels have higher number of regions as important features. Also, they have active features in the corners which can identify artifacts, and spiral edges better than HoG features.
+	To understand why raw pixel based features perform better, we look at the feature importance score calculated across different decision trees in the forest. The feature importance score is calculated using how many sample point prediction it influences. Intuitively, if a feature is more close to the root, more predictions it influence, so more is it's importance weight. The heat-map above shows HoG feature importance, figure below shows heat-map for each channel of $9 \times 9$ image and sum of feature importance values. Intuitively, raw pixels have higher number of regions as important features. Also, they have active features in the edges which can identify artifacts, and spiral edges better than HoG features.
 	
-	\includegraphics[width=0.8\linewidth]{heat_map_raw_rgba.jpg}  
+	 \begin{center}
+	 \includegraphics[width=0.8\linewidth]{heat_map_raw_rgba.jpg}  
+	 \end{center}  
    
    }
 
@@ -325,7 +329,7 @@
    \headerbox{Feature Description}{name=data,column=0,above=bottom,below=abstract}{
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \textbf{Histogram of Gradients (HoG) Features: } 
-  We consider a $k \times k$ patch in the image, and calculate gradient vector for each pixel. Then we build histogram with n bins. Bins corresponds to $180/i$ angles where $i \in \{0, 1, 2, ... (n-1)\}$ and each bin contains sum of magnitudes of gradient vectors corresponding to those bins. We do this for all patches in the image and concatenate all the histogram vectors. Before calculating the HoG features, we crop the image by center $208 \times 208$ and re-size it down to $104 \times 104$. 
+  We consider a $8 \times 8$ patch in the image, and calculate gradient vector for each pixel. Then we build histogram with 8 bins. Bins corresponds to $180/i$ angles where $i \in \{0, 1, 2, ... (n-1)\}$ and each bin contains sum of magnitudes of gradient vectors corresponding to those bins. We do this for all patches in the image and concatenate all the histogram vectors. Before calculating the HoG features, we crop the image by center $208 \times 208$ and re-size it down to $104 \times 104$. 
  The image below shows HoG feature extraction for a sample image:
  \includegraphics[width=0.95\linewidth]{HoG_features_noisy.png}
    \textbf{Raw Pixels as Features:} 
@@ -338,9 +342,10 @@
 
    \headerbox{Model Evaluation}{name=tracking,column=2,span=2,below=speed,above=bottom}{
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  We evaluate random forest regression and multi-task lasso using raw pixel based features. Below are the charts of validation error for different setting of hyper-parameters. We find that, random forest regression performs better than lasso, mainly because kind of noise, we have in the data-set is due to translation, rotation and texture, for which non-linear methods in computer vision have been found more useful. We report the cross-validation error using multi-task lasso regression below:
-  
-  \includegraphics[width=0.35\linewidth]{lasso_cv.png}
+  To compare random forest regression against baseline, we train multi task lasso regression with raw pixel based features. The plot below shows 5-fold CV rmse for different settings of $\alpha (regularization coefficient)$. At best $\alpha=0.01$, the rmse is $18.8\%$, which is worse compared to rmse for random forest regression $(17.486\%)$. Finally, we train on the full training set and our best test set rmse=$17.366\%$ corresponds to raw pixel based features using random forest regression.
+  \begin{center}
+  \includegraphics[width=0.2\linewidth]{lasso_cv.png}
+  \end{center}
 }
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -348,19 +353,19 @@
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    \textbf{Raw Pixels as Features (continued):} 
    Secondly, we could imagine that it might take more images in our training set to learn accurately.
-   The reason for this could be that that the informative data usually lies in a concentrated 
-   subsection of the image. This could mean that we must see more examples to understand that, as long 
-   as we can accurately identify the galaxy cluster or artifact object, the images are actually 
-   translation invariant. 
+   The reason for this could be that that the informative area usually lies in a concentrated 
+   subsection of the image and small translation of this informative area could cause large shift in model output. 
 
    Our methodology for using raw pixels as features, was to find the center of mass of
    the image and find the minimum bounding box that surrounds it. We made sure to ensure that this
    bounding box was a square, so that when we resized the image, we would not skew it. Following
    this we would resize the squre to a ($k \times k \times 3$) (the 3 comes from rgb) feature
-   vector. \includegraphics[width=0.95\linewidth]{hand_engineered_features.jpg}
-   \includegraphics[width=0.95\linewidth,height=0.5\linewidth]{find_k_cv.jpg}
-   *run to k=29, where we ran out of memory.
-   
+   vector. 
+   \begin{center}
+   \includegraphics[width=0.95\linewidth]{hand_engineered_features.jpg}
+   \includegraphics[width=0.8\linewidth]{find_k_cv.jpg}
+   \end{center}
+   The graph above shows rmse on 5-fold CV  for random forest regression with 100 trees.
    }
 \end{poster}%
 %
