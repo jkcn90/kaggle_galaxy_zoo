@@ -69,7 +69,7 @@ def grid_search_cv(model, verbose=0):
 
     # Train and Predict Model
     (clf, _) = model(features, solutions, verbose)
-    parameters = {'max_depth': [5, 10, 15, 20, 25, 30, 60, 100]} 
+    parameters = {'alpha': [0.01, 0.05, 0.1, 0.5, 1.0, 5.0, 10, 50, 100]} 
 
     gs = grid_search.GridSearchCV(clf, param_grid=parameters, scoring=rmse_scorer, n_jobs=-1,
             cv=5, verbose=5)

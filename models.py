@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def default_model(features, solutions, verbose=0):
-    return random_forest_model(features, solutions, verbose)
+    return mulri_task_lasso(features, solutions, verbose)
 
 def test_model(features, solutions, verbose=0):
     columns = solutions.columns[:1]
@@ -105,7 +105,7 @@ def knn_regressor(features, solutions, verbose=0):
 def mulri_task_lasso(features, solutions, verbose=0):
     columns = solutions.columns
 
-    clf = MultiTaskLasso(alpha=0.1)
+    clf = MultiTaskLasso()
 
     print('Training Model... ')
     clf.fit(features, solutions)
