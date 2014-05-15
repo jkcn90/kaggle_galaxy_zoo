@@ -273,8 +273,8 @@
  % Title
  {\sc\Huge Galaxy Zoo : Classifying galaxy images}
  % Authors
- {Jeffrey Ning and Darshan Hegde\\[1em]
- {\texttt{jkcn90@gmail.com, darshan.hegde@cims.nyu.edu}}}
+ {Jeffrey Ning and Darshan Hegde\\Advisor: David Sontag\\[1em]
+ {\texttt{jeffrey.ning@nyu.edu, darshan.hegde@cims.nyu.edu}}}
  % University logo
  {
   \begin{tabular}{r}
@@ -328,6 +328,10 @@
   We consider a $k \times k$ patch in the image, and calculate gradient vector for each pixel. Then we build histogram with n bins. Bins corresponds to $180/i$ angles where $i \in \{0, 1, 2, ... (n-1)\}$ and each bin contains sum of magnitudes of gradient vectors corresponding to those bins. We do this for all patches in the image and concatenate all the histogram vectors. Before calculating the HoG features, we crop the image by center $208 \times 208$ and re-size it down to $104 \times 104$. 
  The image below shows HoG feature extraction for a sample image:
  \includegraphics[width=0.95\linewidth]{HoG_features_noisy.png}
+   \textbf{Raw Pixels as Features:} 
+   Naively, it would seem that using the raw pixels as features, would give us the maximal amount
+   of information possible for our models. However, doing so gave us two major problems. Firstly,
+   our time and space complexity would increase dramatically\ldots
    }
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -342,7 +346,21 @@
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \headerbox{Feature Description}{name=algorithm,column=1,above=bottom, below=contribution}{
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   \textbf{Hand Designed Features:} 
+   \textbf{Raw Pixels as Features (continued):} 
+   Secondly, we could imagine that it might take more images in our training set to learn accurately.
+   The reason for this could be that that the informative data usually lies in a concentrated 
+   subsection of the image. This could mean that we must see more examples to understand that, as long 
+   as we can accurately identify the galaxy cluster or artifact object, the images are actually 
+   translation invariant. 
+
+   Our methodology for using raw pixels as features, was to find the center of mass of
+   the image and find the minimum bounding box that surrounds it. We made sure to ensure that this
+   bounding box was a square, so that when we resized the image, we would not skew it. Following
+   this we would resize the squre to a ($k \times k \times 3$) (the 3 comes from rgb) feature
+   vector. \includegraphics[width=0.95\linewidth]{hand_engineered_features.jpg}
+   \includegraphics[width=0.95\linewidth,height=0.5\linewidth]{find_k_cv.jpg}
+   *run to k=29, where we ran out of memory.
+   
    }
 \end{poster}%
 %
