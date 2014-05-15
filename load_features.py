@@ -8,7 +8,7 @@ import multiprocessing
 
 from sklearn import (preprocessing, manifold)
 
-def extract_features_from_directory(input_directory, feature_extraction_func, scale_features=True,
+def extract_features_from_directory(input_directory, feature_extraction_func, scale_features=False,
                                     restricted_universe=None):
     """Extract features from all jpegs in a given directory.
 
@@ -54,7 +54,7 @@ def extract_features_from_directory(input_directory, feature_extraction_func, sc
 
     return feature_vectors
 
-def main(input_directory, output_file, feature_extraction_func, scale_features=True,
+def main(input_directory, output_file, feature_extraction_func, scale_features=False,
          restricted_universe=None, lle=False):
     """Extract feature vectors from a directory of jpeg's and save a copy to file.
 

@@ -104,7 +104,7 @@ def hog_features(path):
     galaxy_image = io.imread(path, as_grey=True)
     galaxy_image = exposure.rescale_intensity(galaxy_image, out_range=(0,255))    # Improving contrast
 #     galaxy_image = rotateImage(galaxy_image)
-    galaxy_image = denoise_tv_chambolle(galaxy_image, weight=0.15)
+#     galaxy_image = denoise_tv_chambolle(galaxy_image, weight=0.15)
     fd = hog(galaxy_image, orientations=8, pixels_per_cell=(8, 8),
                     cells_per_block=(1, 1), visualise=False)
 

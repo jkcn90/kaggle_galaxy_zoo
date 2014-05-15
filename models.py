@@ -9,6 +9,9 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.linear_model import LinearRegression, MultiTaskLasso
 from sklearn import svm
+from numpy import arange
+import matplotlib.pyplot as plt
+import numpy as np
 
 def default_model(features, solutions, verbose=0):
     return random_forest_model(features, solutions, verbose)
@@ -23,6 +26,25 @@ def test_model(features, solutions, verbose=0):
     clf.fit(features, solutions)
     print('Done Training')
     return (clf, columns)
+
+def decision_tree_regressor(features, solutions, verbose=0):
+    columns = solutions.columns
+
+    clf = DecisionTreeRegressor(max_depth=8)
+
+    print('Training Model... ')
+    clf.fit(features, solutions)
+    print('Done Training')
+    
+    features_importance = clf.feature_importances_
+    features_importance = np.reshape(features_importance, (169, 8))
+    features_importance = np.sum(features_importance, axis=1)
+    features_importance = np.reshape(features_importance, (13, 13))
+    plt.pcolor(features_importance)
+    plt.show()
+    
+    return (clf, columns)
+    
 
 def ada_boost_model(features, solutions, verbose=0):
     columns = solutions.columns
@@ -49,11 +71,25 @@ def gradient_boost_model(features, solutions, verbose=0):
 def random_forest_model(features, solutions, verbose=0):
     columns = solutions.columns
 
-    clf = RandomForestRegressor(100, max_features='log2', n_jobs=-1, verbose=verbose)
+    clf = RandomForestRegressor(100, max_features='sqrt', n_jobs=-1, verbose=verbose)
 
     print('Training Model... ')
     clf.fit(features, solutions)
     print('Done Training')
+    
+#     features_importance = clf.feature_importances_
+#     print(np.min(features_importance))
+#     print(np.max(features_importance))
+#     avg_gini_idx = np.average(features_importance)
+#     print(np.average(features_importance))
+#     fig, axes = plt.subplots(nrows=2, ncols=4, figsize=(16, 8))
+#     features_importance = np.reshape(features_importance, (169, 8))
+#     for idx, feat in enumerate(features_importance.T):
+#         features_importance = np.reshape(feat, (13, 13))
+#         print(idx)
+#         axes[idx/4, idx%4].pcolor(features_importance.T, vmin=0, vmax=avg_gini_idx)
+#          
+#     plt.show()
     return (clf, columns)
 
 def knn_regressor(features, solutions, verbose=0):
