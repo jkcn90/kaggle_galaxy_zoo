@@ -317,9 +317,9 @@
    \headerbox{Feature Description}{name=data,column=0,above=bottom,below=abstract}{
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \textbf{Histogram of Gradients (HoG) Features: } 
-  We consider a $k \times k$ patch in the image, and calculate gradient vector for each pixel. Then we build histogram with n bins. Bins corresponds to $180/i$ angles where $i \in \{0, 1, 2, ... (n-1)\}$ and each bin contains sum of magnitudes of gradient vectors corresponding to those bins. We do this for all patches in the image and concatenate all the histogram vectors. Before calculating the HoG features, we crop the image by center $208 \times 208$ and re-size it down to $104 \times 104$. We apply image de-noising to remove the spurious gradients. The last step of de-noising is essential to get HoG features right. The image below shows HoG feature extraction for a sample image with de-noising: 
-   \includegraphics[width=0.95\linewidth]{HoG_features.png}
- The image below shows HoG feature extraction for a sample image without de-noising: 
+  We consider a $k \times k$ patch in the image, and calculate gradient vector for each pixel. Then we build histogram with n bins. Bins corresponds to $180/i$ angles where $i \in \{0, 1, 2, ... (n-1)\}$ and each bin contains sum of magnitudes of gradient vectors corresponding to those bins. We do this for all patches in the image and concatenate all the histogram vectors. Before calculating the HoG features, we crop the image by center $208 \times 208$ and re-size it down to $104 \times 104$. 
+ The image below shows HoG feature extraction for a sample image:
+ \includegraphics[width=0.95\linewidth]{HoG_features_noisy.png}
    }
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -332,8 +332,6 @@
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \headerbox{Feature Description}{name=algorithm,column=1,above=bottom, below=contribution}{
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   \includegraphics[width=0.95\linewidth]{HoG_features_noisy.png}
-   \linebreak
    \textbf{Hand Designed Features:} 
    }
 \end{poster}%

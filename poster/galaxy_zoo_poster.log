@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  14 MAY 2014 14:18
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  15 MAY 2014 01:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -867,73 +867,46 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 
-<images/HoG_features.png, id=24, 578.16pt x 289.08pt>
-File: images/HoG_features.png Graphic file (type png)
-
-<use images/HoG_features.png>
-Package pdftex.def Info: images/HoG_features.png used on input line 323.
-(pdftex.def)             Requested size: 214.21138pt x 107.10349pt.
-
-Underfull \hbox (badness 1975) in paragraph at lines 323--323
-[]\T1/aer/bx/n/10 Histogram of Gra-di-ents (HoG) Fea-tures:
- []
-
-
-Underfull \hbox (badness 1189) in paragraph at lines 323--323
-\T1/aer/m/n/10 ex-trac-tion for a sam-ple im-age with de-noising:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 323--323
-[]
- []
-
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-<images/HoG_features_noisy.png, id=26, 578.16pt x 289.08pt>
+<images/HoG_features_noisy.png, id=24, 578.16pt x 289.08pt>
 File: images/HoG_features_noisy.png Graphic file (type png)
 
 <use images/HoG_features_noisy.png>
-Package pdftex.def Info: images/HoG_features_noisy.png used on input line 338.
+Package pdftex.def Info: images/HoG_features_noisy.png used on input line 323.
 (pdftex.def)             Requested size: 214.21138pt x 107.10349pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 338--338
-[][]
- []
-
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-[2
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+ [2
 
 {/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./image
 s/Class1_1.jpg> <./images/Class1_2.jpg> <./images/Class1_3.jpg> <./images/NYUTo
-rch.jpg> <./images/HoG_features.png> <./images/HoG_features_noisy.png>]
-(./galaxy_zoo_poster.aux) ) 
+rch.jpg> <./images/HoG_features_noisy.png>] (./galaxy_zoo_poster.aux) ) 
 Here is how much of TeX's memory you used:
- 15544 strings out of 493315
- 293465 string characters out of 6137904
- 569418 words of memory out of 5000000
- 18623 multiletter control sequences out of 15000+600000
+ 15539 strings out of 493315
+ 293338 string characters out of 6137904
+ 568086 words of memory out of 5000000
+ 18619 multiletter control sequences out of 15000+600000
  26271 words of font info for 58 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 63i,13n,70p,732b,936s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2013/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmtt12.pfb>
-Output written on galaxy_zoo_poster.pdf (1 page, 541986 bytes).
+ 63i,13n,70p,545b,936s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/lo
+cal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/loc
+al/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/loc
+al/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/loca
+l/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/
+texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/te
+xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
+live/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on galaxy_zoo_poster.pdf (1 page, 432503 bytes).
 PDF statistics:
- 64 PDF objects out of 1000 (max. 8388607)
+ 62 PDF objects out of 1000 (max. 8388607)
  29 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 139 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 134 words of extra memory for PDF output out of 10000 (max. 10000000)
 

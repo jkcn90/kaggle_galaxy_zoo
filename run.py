@@ -10,6 +10,7 @@ import feature_extraction
 
 from galaxy_data import GalaxyData
 from sklearn import cross_validation
+from sklearn import grid_search
 from sklearn.metrics import mean_squared_error
 
 def run(model, verbose=0):
@@ -58,7 +59,23 @@ def cross_validationcv(model, verbose=0):
     # Train and Predict Model
     (clf, _) = model(features, solutions, verbose)
     scores = cross_validation.cross_val_score(clf, features, solutions, cv=5, scoring=rmse_scorer, n_jobs=-1)
+    print(scores)
     print("Cross validation error: ", sum(scores)/len(scores))
+    
+def grid_search_cv(model, verbose=0):
+    data = GalaxyData(feature_extraction.hog_features, scale_features=False)
+
+    (features, solutions) = data.get_training_data()
+
+    # Train and Predict Model
+    (clf, _) = model(features, solutions, verbose)
+    parameters = {'max_depth': [5, 10, 15, 20, 25, 30, 60, 100]} 
+
+    gs = grid_search.GridSearchCV(clf, param_grid=parameters, scoring=rmse_scorer, n_jobs=-1,
+            cv=5, verbose=5)
+    gs.fit(features, solutions)
+    print(gs.grid_scores_)
+    
 
 def resolve_model_name(name):
     """Gets the model function corresponding to the name.
@@ -106,6 +123,7 @@ if __name__ == '__main__':
                                                  'model is used if no model is selected')
     parser.add_argument('-c', '--competition', help='runs competition mode', action='store_true')
     parser.add_argument('-cv', '--crossvalidate', help='runs cross validation', action='store_true')
+    parser.add_argument('-gs', '--gridsearch', help='runs grid search over height', action='store_true')
     parser.add_argument('-v', '--verbose', help='triggers extra information', action='store_true')
     parser.add_argument('-x', '--clean', help='cleans workspace', action='store_true')
     parser.add_argument('-l', '--list', help='lists available models', action='store_true')
@@ -125,5 +143,7 @@ if __name__ == '__main__':
         competition_run()
     elif args.crossvalidate:
         cross_validationcv(resolve_model_name(args.model), verbose)
+    elif args.gridsearch:
+        grid_search_cv(resolve_model_name(args.model), verbose)
     else:
         run(resolve_model_name(args.model), verbose)
