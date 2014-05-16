@@ -3,17 +3,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from scipy import ndimage as nd
-# try:
-#     import SimpleCV as cv
-# except:
-#     print('Warning: Running without SimpleCV')
+try:
+    import SimpleCV as cv
+except:
+    print('Warning: Running without SimpleCV')
 from skimage import io
 from skimage import color
 from skimage.transform import resize
 from skimage.feature import hog
 from skimage import exposure
 from skimage.filter import threshold_otsu
-from skimage.restoration import denoise_tv_chambolle
+try:
+    from skimage.restoration import denoise_tv_chambolle
+except:
+    print('Running without denoise_tv_chambolle')
 from skimage.morphology import label
 from skimage.measure import regionprops
 from skimage import transform
@@ -56,6 +59,42 @@ def raw_all(path):
 
     feature_vector = _add_galaxy_id(path, feature_vector)
     return feature_vector
+
+def raw_1(path):
+    return raw(path, cropped_size=1)
+
+def raw_2(path):
+    return raw(path, cropped_size=2)
+
+def raw_3(path):
+    return raw(path, cropped_size=3)
+
+def raw_4(path):
+    return raw(path, cropped_size=4)
+
+def raw_5(path):
+    return raw(path, cropped_size=5)
+
+def raw_6(path):
+    return raw(path, cropped_size=6)
+
+def raw_7(path):
+    return raw(path, cropped_size=7)
+
+def raw_8(path):
+    return raw(path, cropped_size=8)
+
+def raw_9(path):
+    return raw(path, cropped_size=9)
+
+def raw_9_cut(path):
+    return raw(path, cropped_size=9)
+
+def raw_19(path):
+    return raw(path, cropped_size=19)
+
+def raw_29(path):
+    return raw(path, cropped_size=29)
 
 def raw(path, rotate_images=False, cropped_size=9):
     img = cv.Image(path)

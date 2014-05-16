@@ -20,7 +20,7 @@ def run(model, verbose=0):
         model: model function to run.
     """
     # Load the data and split into training and validation sets
-    data = GalaxyData(feature_extraction.hog_features, scale_features=False)
+    data = GalaxyData(feature_extraction.raw_1, scale_features=False)
 
     (training_features, training_solutions,
      validation_features, validation_solutions) = data.split_training_and_validation_data(50)
@@ -34,6 +34,26 @@ def run(model, verbose=0):
     train_rmse = evaluate.get_rmse_clf(clf, training_features, training_solutions)
     print " Validation RMSE: ", valid_rmse
     print " Training RMSE: ", train_rmse
+
+def run_training_test(model, verbose=0):
+    """Entry Point to run models
+
+    Args:
+        model: model function to run.
+    """
+    # Load the data and split into training and validation sets
+    data = GalaxyData(feature_extraction.raw_9, scale_features=False)
+
+    (test_features, test_solutions) = data.get_test_data()
+    (training_features, training_solutions) = data.get_training_data()
+
+    # Train and Predict Model
+    (clf, columns) = model(training_features, training_solutions, verbose)
+    predicted_solutions = models.predict(clf, test_features, columns)
+
+    # Evaluate Predictions
+    score = evaluate.get_rmse(test_solutions, predicted_solutions)
+    print(score)
 
 def competition_run():
     data = GalaxyData()
@@ -55,7 +75,7 @@ def rmse_scorer(estimator, X, y):
     return rmse
     
 def cross_validationcv(model, verbose=0):
-    data = GalaxyData(feature_extraction.hog_features, scale_features=False)
+    data = GalaxyData(feature_extraction.raw_1, scale_features=False)
 
     (features, solutions) = data.get_training_data()
 
@@ -133,6 +153,7 @@ if __name__ == '__main__':
     parser.add_argument('-x', '--clean', help='cleans workspace', action='store_true')
     parser.add_argument('-l', '--list', help='lists available models', action='store_true')
     parser.add_argument('-m', '--model', help='runs the selected model')
+    parser.add_argument('-tt', '--train_test', help='evaluate test error', action='store_true')
     args = parser.parse_args()
 
     if args.verbose:
@@ -148,6 +169,8 @@ if __name__ == '__main__':
         competition_run()
     elif args.crossvalidate:
         cross_validationcv(resolve_model_name(args.model), verbose)
+    elif args.train_test:
+        run_training_test(resolve_model_name(args.model), verbose)
     elif args.gridsearch:
         grid_search_cv(resolve_model_name(args.model), verbose)
     else:
