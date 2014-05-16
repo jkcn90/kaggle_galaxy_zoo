@@ -1,7 +1,8 @@
 import math
 import numpy as np
+from scipy.stats import entropy
 
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import (mean_squared_error, normalized_mutual_info_score)
 
 def get_rmse(actual, predicted):
     """Calculates root mean square error.
@@ -21,6 +22,12 @@ def get_rmse_clf(estimator, X, y):
     y_predicted = estimator.predict(X)
     rmse = math.sqrt(mean_squared_error(y, y_predicted))
     return rmse
+
+def get_errors_clf(estimator, X, y):
+    y_predicted = estimator.predict(X)
+    rmse = math.sqrt(mean_squared_error(y, y_predicted))
+    kl_divergence = np.average(entropy(y.T, y_predicted.T))
+    return (rmse, kl_divergence)
 
 def cross_validate(clf, X, y, cv=5):
     if cv < 2:
