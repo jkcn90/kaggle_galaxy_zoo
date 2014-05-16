@@ -7,14 +7,15 @@ from sklearn.ensemble import ExtraTreesRegressor
 from sklearn.ensemble import AdaBoostRegressor
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.linear_model import LinearRegression, MultiTaskLasso
+from sklearn.dummy import DummyRegressor
+from sklearn.linear_model import LinearRegression, Lasso
 from sklearn import svm
 from numpy import arange
 import matplotlib.pyplot as plt
 import numpy as np
 
 def default_model(features, solutions, verbose=0):
-    return random_forest_model(features, solutions, verbose)
+    return lasso_regression(features, solutions, verbose)
 
 def test_model(features, solutions, verbose=0):
     columns = solutions.columns[:1]
@@ -22,6 +23,14 @@ def test_model(features, solutions, verbose=0):
 
     clf = svm.SVR(max_iter=100, verbose=verbose)
 
+    print('Training Model... ')
+    clf.fit(features, solutions)
+    print('Done Training')
+    return (clf, columns)
+
+def mean_model(features, solutions, verbose=0):
+    columns = solutions.columns
+    clf = DummyRegressor()
     print('Training Model... ')
     clf.fit(features, solutions)
     print('Done Training')
@@ -81,7 +90,7 @@ def random_forest_model(features, solutions, verbose=0):
     
     features_importance = clf.feature_importances_
     features_importance = np.reshape(features_importance, (169, 8))
-    features_importance = np.sum(features_importance, axis=1)
+    features_importance = np.max(features_importance, axis=1)
     features_importance = np.reshape(features_importance, (13, 13))
     fig, ax = plt.subplots()
     ax.pcolor(features_importance)
@@ -100,13 +109,27 @@ def knn_regressor(features, solutions, verbose=0):
     print('Done Training')
     return (clf, columns)
 
-def mulri_task_lasso(features, solutions, verbose=0):
+def lasso_regression(features, solutions, verbose=0):
     columns = solutions.columns
 
-    clf = MultiTaskLasso()
+    clf = Lasso(alpha=0.5e-4, max_iter=2000)
 
     print('Training Model... ')
     clf.fit(features, solutions)
+    
+#     feature_coeff = clf.coef_
+#     for idx in range(3):
+#         features_importance = np.reshape(feature_coeff[idx, :], (169, 8))
+#         features_importance = np.max(features_importance, axis=1)
+#         features_importance = np.reshape(features_importance, (13, 13))
+#         plt.pcolor(features_importance)
+#         plt.title("Feature importance for Class1." + str(idx+1))
+#         plt.colorbar()
+#         plt.xticks(arange(0.5,13.5), range(1, 14))
+#         plt.yticks(arange(0.5,13.5), range(1, 14))
+#         plt.axis([0, 13, 0, 13])
+#         plt.show()
+    
     print('Done Training')
     return (clf, columns)
 
@@ -133,6 +156,6 @@ def predict(clf, features, columns):
     predicted_solutions = clf.predict(features)
     predicted_solutions = pd.DataFrame(predicted_solutions, index=features.index,
                                        columns=columns)
-    predicted_solutions.to_csv("./results/predictions_hog.csv")
+    predicted_solutions.to_csv("./results/predictions_hog_lasso.csv")
     print('Done Predicting')
     return predicted_solutions
