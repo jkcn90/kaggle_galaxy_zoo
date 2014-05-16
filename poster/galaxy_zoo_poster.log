@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  15 MAY 2014 11:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  15 MAY 2014 15:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -895,11 +895,6 @@ File: images/HoG_features_noisy.png Graphic file (type png)
 Package pdftex.def Info: images/HoG_features_noisy.png used on input line 339.
 (pdftex.def)             Requested size: 214.21138pt x 107.10349pt.
 
-Underfull \hbox (badness 1975) in paragraph at lines 339--339
-[]\T1/aer/bx/n/10 Histogram of Gra-di-ents (HoG) Fea-tures:
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 339--339
 []
  []
@@ -907,11 +902,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 339--339
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-<images/lasso_cv.png, id=29, 578.16pt x 433.62pt>
-File: images/lasso_cv.png Graphic file (type png)
- <use images/lasso_cv.png>
-Package pdftex.def Info: images/lasso_cv.png used on input line 349.
-(pdftex.def)             Requested size: 93.59311pt x 70.19444pt.
+
+Underfull \hbox (badness 2680) in paragraph at lines 350--350
+\T1/aer/m/n/10 raw pixel based fea-tures. The plot be-low shows 5-fold CV RMSE 
+for dif-fer-ent set-tings of
+ []
+
+<images/raw_images_alpha_lasso_cv.jpg, id=29, 1957.0716pt x 664.884pt>
+File: images/raw_images_alpha_lasso_cv.jpg Graphic file (type jpg)
+
+<use images/raw_images_alpha_lasso_cv.jpg>
+Package pdftex.def Info: images/raw_images_alpha_lasso_cv.jpg used on input lin
+e 350.
+(pdftex.def)             Requested size: 233.98637pt x 79.48842pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -921,13 +924,13 @@ File: images/hand_engineered_features.jpg Graphic file (type jpg)
 
 <use images/hand_engineered_features.jpg>
 Package pdftex.def Info: images/hand_engineered_features.jpg used on input line
- 369.
+ 370.
 (pdftex.def)             Requested size: 214.21138pt x 160.65523pt.
 
 <images/find_k_cv.jpg, id=31, 578.16pt x 433.62pt>
 File: images/find_k_cv.jpg Graphic file (type jpg)
  <use images/find_k_cv.jpg>
-Package pdftex.def Info: images/find_k_cv.jpg used on input line 369.
+Package pdftex.def Info: images/find_k_cv.jpg used on input line 370.
 (pdftex.def)             Requested size: 180.38979pt x 135.28757pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -938,28 +941,28 @@ Missing character: There is no ; in font nullfont!
 {/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./image
 s/Class1_1.jpg> <./images/Class1_2.jpg> <./images/Class1_3.jpg> <./images/NYUTo
 rch.jpg> <./images/HoGVsRawFeats.png> <./images/HoGHeatMap.png> <./images/heat_
-map_raw_rgba.jpg> <./images/HoG_features_noisy.png> <./images/lasso_cv.png> <./
-images/hand_engineered_features.jpg> <./images/find_k_cv.jpg>]
-(./galaxy_zoo_poster.aux) ) 
+map_raw_rgba.jpg> <./images/HoG_features_noisy.png> <./images/raw_images_alpha_
+lasso_cv.jpg> <./images/hand_engineered_features.jpg> <./images/find_k_cv.jpg>]
+ (./galaxy_zoo_poster.aux) ) 
 Here is how much of TeX's memory you used:
- 15570 strings out of 493315
- 294160 string characters out of 6137904
- 579851 words of memory out of 5000000
- 18644 multiletter control sequences out of 15000+600000
- 26271 words of font info for 58 fonts, out of 8000000 for 9000
+ 15574 strings out of 493315
+ 294277 string characters out of 6137904
+ 579891 words of memory out of 5000000
+ 18646 multiletter control sequences out of 15000+600000
+ 29263 words of font info for 60 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 63i,13n,70p,746b,936s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2013/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmtt12.pfb>
-Output written on galaxy_zoo_poster.pdf (1 page, 651735 bytes).
+ 63i,13n,70p,870b,936s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2013/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmtt12.pfb>
+Output written on galaxy_zoo_poster.pdf (1 page, 760075 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
+ 71 PDF objects out of 1000 (max. 8388607)
  29 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  164 words of extra memory for PDF output out of 10000 (max. 10000000)

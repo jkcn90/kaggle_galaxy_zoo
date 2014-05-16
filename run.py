@@ -30,7 +30,10 @@ def run(model, verbose=0):
     predicted_validation_solutions = models.predict(clf, validation_features, columns)
 
     # Evaluate Predictions
-    evaluate.get_rmse(validation_solutions, predicted_validation_solutions)
+    valid_rmse = evaluate.get_rmse_clf(clf, validation_features, validation_solutions)
+    train_rmse = evaluate.get_rmse_clf(clf, training_features, training_solutions)
+    print " Validation RMSE: ", valid_rmse
+    print " Training RMSE: ", train_rmse
 
 def competition_run():
     data = GalaxyData()
@@ -62,6 +65,8 @@ def cross_validationcv(model, verbose=0):
     print(scores)
     print("Cross validation error: ", sum(scores)/len(scores))
     
+    
+    
 def grid_search_cv(model, verbose=0):
     data = GalaxyData(feature_extraction.hog_features, scale_features=False)
 
@@ -69,7 +74,7 @@ def grid_search_cv(model, verbose=0):
 
     # Train and Predict Model
     (clf, _) = model(features, solutions, verbose)
-    parameters = {'alpha': [0.01, 0.05, 0.1, 0.5, 1.0, 5.0, 10, 50, 100]} 
+    parameters = {'min_sample_split': [1e-6, 5e-6, 1e-5, 5e-5, 1e-4, 1e-3, 1e-2, 1e-1]} 
 
     gs = grid_search.GridSearchCV(clf, param_grid=parameters, scoring=rmse_scorer, n_jobs=-1,
             cv=5, verbose=5)
