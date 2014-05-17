@@ -1,6 +1,11 @@
+<<<<<<< Updated upstream
 This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  17 MAY 2014 10:40
+=======
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  17 MAY 2014 10:29
+>>>>>>> Stashed changes
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
 **plos_template.tex
 (./plos_template.tex
@@ -22,25 +27,20 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsmath.sty
+) (/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
 \@mathmargin=\skip43
-
 For additional information on amsmath, use the `?' option.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
-
 (/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks14
 \ex@=\dimen103
-))
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsbsy.sty
+)) (/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen104
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsopn.sty
+) (/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count87
@@ -80,65 +80,50 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \mathdisplay@stack=\toks18
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/amssymb.sty
+) (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-
 (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphicx.sty
+)) (/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
-
 (/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks19
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphics.sty
+) (/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
-
 (/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/graphics.cfg
+) (/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
-
 (/usr/local/texlive/2013/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
 (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+) (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count99
 ))
 \Gin@req@height=\dimen112
 \Gin@req@width=\dimen113
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/cite/cite.sty
+) (/usr/local/texlive/2013/texmf-dist/tex/latex/cite/cite.sty
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 373.
 Package: cite 2010/09/10  v 5.3
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/color.sty
+) (/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
-
 (/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/caption/caption.sty
+) (/usr/local/texlive/2013/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
-
 (/usr/local/texlive/2013/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 57.
@@ -151,8 +136,11 @@ Package caption3 Info: TeX engine: e-TeX on input line 57.
 \caption@hangindent=\dimen120
 )
 \c@ContinuedFloat=\count100
+) (./plos_template.aux
+
+LaTeX Warning: Label `fig:rawdreval' multiply defined.
+
 )
-(./plos_template.aux)
 \openout1 = `plos_template.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
@@ -167,7 +155,6 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
-
 (/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count101
@@ -182,14 +169,11 @@ LaTeX Font Info:    ... okay on input line 32.
 \makeMPintoPDFobject=\count106
 \everyMPtoPDFconversion=\toks21
 ) (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
-)
-
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
-)
-(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+) (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
@@ -197,22 +181,16 @@ Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+) (/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
-
 (/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/grfext.sty
 Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
-
 (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
 Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-))
-(/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+)) (/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-
 (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
 Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-
 (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
@@ -221,16 +199,14 @@ Package etexcmds Info: Could not find \expanded.
 (etexcmds)             In the latter case, load this package earlier.
 )))
 Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 452.
-
 (/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
+<<<<<<< Updated upstream
 
 
 Package caption Warning: \label without proper \caption on input line 66.
@@ -270,10 +246,18 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 78.
 
+=======
+LaTeX Font Info:    Try loading font information for U+msa on input line 58.
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 58.
+>>>>>>> Stashed changes
 (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
+<<<<<<< Updated upstream
 Package caption Warning: \label without proper \caption on input line 81.
 See the caption package documentation for explanation.
 
@@ -285,16 +269,37 @@ LaTeX Warning: Reference `fig:hog' on page 1 undefined on input line 78.
  <./images/class_examples.png> <./images/Class1_1.jpg> <./images/Class1_2.jpg> 
 <./images/Class1_3.jpg>] <images/HoG_features_noisy.png, id=15, 578.16pt x 289.
 08pt>
-File: images/HoG_features_noisy.png Graphic file (type png)
+=======
+Package caption Warning: \label without proper \caption on input line 66.
+See the caption package documentation for explanation.
 
+
+LaTeX Warning: Reference `fig:hog' on page 1 undefined on input line 58.
+
+<images/HoG_features_noisy.png, id=1, 578.16pt x 289.08pt>
+>>>>>>> Stashed changes
+File: images/HoG_features_noisy.png Graphic file (type png)
 <use images/HoG_features_noisy.png>
+<<<<<<< Updated upstream
 Package pdftex.def Info: images/HoG_features_noisy.png used on input line 83.
+=======
+Package pdftex.def Info: images/HoG_features_noisy.png used on input line 63.
+>>>>>>> Stashed changes
 (pdftex.def)             Requested size: 346.89867pt x 173.44933pt.
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no — in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no — in font cmr10!
+<<<<<<< Updated upstream
 
+=======
+
+Package caption Warning: \label without proper \caption on input line 82.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:raw' on page 1 undefined on input line 75.
+>>>>>>> Stashed changes
 
 Package caption Warning: \label without proper \caption on input line 97.
 See the caption package documentation for explanation.
@@ -313,6 +318,7 @@ Package pdftex.def Info: images/hand_engineered_features.jpg used on input line
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+<<<<<<< Updated upstream
 
 Package caption Warning: \label without proper \caption on input line 107.
 See the caption package documentation for explanation.
@@ -337,10 +343,37 @@ Package amsmath Warning: Foreign command \over;
 
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 129.
 
+=======
+ <./images/HoG_features_noisy.png>] <images/hand_engineered_features.jpg, id=14, 578.16pt x 433.62pt>
+File: images/hand_engineered_features.jpg Graphic file (type jpg)
+<use images/hand_engineered_features.jpg>
+Package pdftex.def Info: images/hand_engineered_features.jpg used on input line 79.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+
+Package caption Warning: \label without proper \caption on input line 92.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:raweval' on page 2 undefined on input line 85.
+
+<images/find_k_cv.jpg, id=15, 578.16pt x 433.62pt>
+File: images/find_k_cv.jpg Graphic file (type jpg)
+<use images/find_k_cv.jpg>
+Package pdftex.def Info: images/find_k_cv.jpg used on input line 89.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+[2 <./images/hand_engineered_features.jpg> <./images/find_k_cv.jpg>]
+
+Package amsmath Warning: Foreign command \over;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 102.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 109.
+>>>>>>> Stashed changes
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+<<<<<<< Updated upstream
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 129.
  [3 <./images/hand_engineered_features.jpg>] [4 <./images/find_k_cv.jpg>]
 <images/HoG_DT_Heatmap.png, id=36, 578.16pt x 433.62pt>
@@ -388,10 +421,41 @@ No file plos_template.bbl.
 images/HoG_DecisionTreeCV.png>] [7 <./images/Raw_Features_Decision_Tree_min_sam
 ples_split.jpg> <./images/Raw_Features_Random_Forest_n_estimators.jpg>]
 [8] (./plos_template.aux)
+=======
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 109.
+[3] <images/HoG_DT_Heatmap.png, id=28, 578.16pt x 433.62pt>
+File: images/HoG_DT_Heatmap.png Graphic file (type png)
+<use images/HoG_DT_Heatmap.png>
+Package pdftex.def Info: images/HoG_DT_Heatmap.png used on input line 140.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+<images/Raw_Features_DT_Heatmap.jpg, id=29, 578.16pt x 433.62pt>
+File: images/Raw_Features_DT_Heatmap.jpg Graphic file (type jpg)
+<use images/Raw_Features_DT_Heatmap.jpg>
+Package pdftex.def Info: images/Raw_Features_DT_Heatmap.jpg used on input line 148.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+<images/HoG_DecisionTreeCV.png, id=30, 904.8204pt x 583.9416pt>
+File: images/HoG_DecisionTreeCV.png Graphic file (type png)
+<use images/HoG_DecisionTreeCV.png>
+Package pdftex.def Info: images/HoG_DecisionTreeCV.png used on input line 156.
+(pdftex.def)             Requested size: 361.92175pt x 233.5725pt.
+<images/Raw_Features_Decision_Tree_min_samples_split.jpg, id=31, 894.7026pt x 590.4459pt>
+File: images/Raw_Features_Decision_Tree_min_samples_split.jpg Graphic file (type jpg)
+<use images/Raw_Features_Decision_Tree_min_samples_split.jpg>
+Package pdftex.def Info: images/Raw_Features_Decision_Tree_min_samples_split.jpg used on input line 164.
+(pdftex.def)             Requested size: 357.8747pt x 236.17418pt.
+<images/Raw_Features_Random_Forest_n_estimators.jpg, id=32, 883.1394pt x 590.4459pt>
+File: images/Raw_Features_Random_Forest_n_estimators.jpg Graphic file (type jpg)
+<use images/Raw_Features_Random_Forest_n_estimators.jpg>
+Package pdftex.def Info: images/Raw_Features_Random_Forest_n_estimators.jpg used on input line 175.
+(pdftex.def)             Requested size: 353.2495pt x 236.17418pt.
+No file plos_template.bbl.
+[4] [5 <./images/HoG_DT_Heatmap.png> <./images/Raw_Features_DT_Heatmap.jpg>] [6 <./images/HoG_DecisionTreeCV.png> <./images/Raw_Features_Decision_Tree_min_samples_split.jpg>] [7 <./images/Raw_Features_Random_Forest_n_estimators.jpg>] (./plos_template.aux)
+>>>>>>> Stashed changes
 
 LaTeX Warning: There were undefined references.
 
 
+<<<<<<< Updated upstream
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
@@ -419,4 +483,24 @@ PDF statistics:
  51 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  61 words of extra memory for PDF output out of 10000 (max. 10000000)
+=======
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 3604 strings out of 493315
+ 54057 string characters out of 6137904
+ 116543 words of memory out of 5000000
+ 7009 multiletter control sequences out of 15000+600000
+ 7210 words of font info for 28 fonts, out of 8000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 38i,7n,38p,1260b,341s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on plos_template.pdf (7 pages, 714333 bytes).
+PDF statistics:
+ 81 PDF objects out of 1000 (max. 8388607)
+ 49 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+>>>>>>> Stashed changes
 
