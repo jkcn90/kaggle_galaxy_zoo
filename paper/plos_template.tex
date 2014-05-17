@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{cite}
 \usepackage{color} 
+\usepackage{float}
 
 \topmargin 0.0cm
 \oddsidemargin 0.5cm
@@ -45,14 +46,40 @@ jkn233@nyu.edu, dh1806@nyu.edu
 \end{flushleft}
 
 \section*{Introduction}
+The motivation for this project is the task of automating galaxy classification based on low
+resolution images. Asking professional astronomers or even informed volunteers to label each galaxy
+would be infeasible because of the number of galaxy images in existence. Taking high resolution
+images of each galaxy would be costly because of the scarcity of large telescopes.
 
-<<<<<<< Updated upstream
+The GalaxyZoo project was an attempt to deal with the scarcity of professional astronomers
+available to classify galaxies. The project was able to get a large number of volunteers to answer a
+series of guided questions to determine the classification of a large number of galaxies. The
+problem with using volunteers, however, is that there could be a higher probability of
+misclassification due to misunderstanding classification criteria.
 
-=======
->>>>>>> Stashed changes
+The solution that GalaxyZoo came up with was to have many people classify each image. Thus the
+label for each galaxy image is a list of possible galaxy classifications and the associated 
+distribution of people who labled the image as such. This information can be used to isolate
+examples of galaxy images that many people have a high confidence of, or send for further
+investigation those images that there is a great uncertainty for.
+
+There was a Kaggle GalaxyZoo competition for which the goal was to create methods that would, for a
+given galaxy image, be able to learn the distribution of classification that volunteers would of
+come up with. If successfull with a high degree of accuracy, a large number of galaxies could be
+automatically classfied with a distribution. In this way, galaxies could be classfied with either
+great certainty or be known to be confusing to classify with the current resolution. This could save
+a large amount of manpower and possibly allow for a better allocation of large teloscope time.
+
+Our main focus was to try and find a small subset of informative features. We tried two features
+that attempted to minimize the amount of translational variance that occured. Following this we
+examined if it was possible to reduce the amount of pixel information in one of the features and
+still maintain a comparable prediction. The features were then run through a linear regressor and
+non-linear regressors.
+
+
 \section*{Problem Definition}
 
-Given an image of a galaxy, we need to predict the probability that it belongs to one of the given morpho- logical categories. The top left part of the poster shows examples from each category. On the left class 1.1 (Smooth Galaxy), in the middle is class 1.2 (Spiral Galaxy) and on the right is class 1.3 ( Star / Artifact).
+Given an image of a galaxy, we need to predict the probability that it belongs to one of the given morphological categories. The top left part of the poster shows examples from each category. On the left class 1.1 (Smooth Galaxy), in the middle is class 1.2 (Spiral Galaxy) and on the right is class 1.3 ( Star / Artifact).
 
 \section*{Data Description}
 
@@ -92,9 +119,17 @@ Naively, it would seem that using the raw pixels as features, would give us the 
 
 Secondly, we could imagine that it might take more images in our training set to learn accurately. The reason for this could be that that the informative area usually lies in a concentrated subsection of the image and small translation of this informative area could cause large shifts in model prediction.
 
-In order to balance
+For these reasons we attempted to find a balance between the number of feature vectors that we extracted from the raw pixel
+data and memory/running time constraints. In order to do this we decided to crop and resize the images to various sizes
+and determine at what point we started to get diminishing returns.
 
 Our methodology for using raw pixels as features, was to find the center of mass of the image and find the minimum bounding box that surrounds it. We ensured that this bounding box was a square, so that when we resized the image, we would not skew it. Following this we would resize the squre to a (k × k × 3) (the 3 comes from rgb) feature vector. Figure \ref{fig:raw} shows the transformation from original image to final feature.
+
+We then did 5-fold cross-validation using a Random Forest Regressor with 100 trees and max features
+set to $log_2$ on various settings of k. Figure \ref{fig:eval} shows how our cross-validation score
+does not change much after k = 9. Unfortunately were not able to run cross-validation for $k > 29$
+because of memory issues, and so do not have a clear picture of how the validation error might
+behave as $k$ approaches the native size of the cropped images.
 
 \begin{figure}[h]
 \begin{center}
@@ -104,9 +139,7 @@ Our methodology for using raw pixels as features, was to find the center of mass
 \label{fig:raw}
 \end{figure}
 
-$<explain the chart experiements in detail>$ \ref{fig:raweval} shows the evaluation for different sizes.
-
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.4]{images/find_k_cv.jpg}
 \caption{Raw pixel feature performance for different window sizes}
@@ -176,7 +209,9 @@ To understand why, we plot the feature importance heat-map for both HoG and Raw 
 \begin{figure}
 \begin{center}
 \includegraphics[scale=0.4]{images/HoG_DecisionTreeCV.png}
-\caption{HoG feature performance using decision tree regression}
+\caption{Hog Features Using Decision Trees: Training and Validation Error for min\_samples\_split \\
+         Minimum KL-Divergence for Validation: 0.174 min\_samples\_split: 802 \\
+         Minimum RMSE for Validation: 0.205: min\_samples\_split: 802}
 \label{fig:hogdreval}
 \end{center}
 \end{figure}
@@ -198,6 +233,37 @@ To understand why, we plot the feature importance heat-map for both HoG and Raw 
 \caption{Raw Features Using Random Forests: Training and Validation Error for n\_estimators \\
          Minimum KL-Divergence for Validation: 0.174 n\_estimators: 97 \\
          Minimum RMSE for Validation: 0.0.133: n\_estimators: 97}
+\label{fig:rawdreval}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.4]{images/HoG_Random_Forest_n_estimators.jpg}
+\caption{HoG Features Using Random Forests: Training and Validation Error for n\_estimators \\
+         Minimum KL-Divergence for Validation: 0.165 n\_estimators: 93 \\
+         Minimum RMSE for Validation: 0.197: n\_estimators: 90}
+\label{fig:rawdreval}
+\end{center}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.4]{images/Raw_Features_Random_Forest_min_samples_split.jpg}
+\caption{Raw Pixels Features Using Random Forests: Training and Validation Error for min\_samples\_split \\
+         Minimum KL-Divergence for Validation: 0.137 n\_estimators: 12 \\
+         Minimum RMSE for Validation: 0.177: n\_estimators: 12}
+\label{fig:rawdreval}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.4]{images/Raw_Features_Random_Forest_min_samples_split}
+\caption{HoG Features Using Random Forests: Training and Validation Error for min\_samples\_split \\
+         Minimum KL-Divergence for Validation: 0.165 n\_estimators: 32 \\
+         Minimum RMSE for Validation: 0.197: n\_estimators: 22}
 \label{fig:rawdreval}
 \end{center}
 \end{figure}

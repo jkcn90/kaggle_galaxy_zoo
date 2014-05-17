@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  17 MAY 2014 10:40
-=======
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  17 MAY 2014 10:29
->>>>>>> Stashed changes
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  17 MAY 2014 14:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -122,6 +118,13 @@ Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
+) (/usr/local/texlive/2013/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count100
+\float@exts=\toks20
+\float@box=\box28
+\@float@everytoks=\toks21
+\@floatcapt=\box29
 ) (/usr/local/texlive/2013/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/caption/caption3.sty
@@ -135,39 +138,49 @@ Package caption3 Info: TeX engine: e-TeX on input line 57.
 \caption@parindent=\dimen119
 \caption@hangindent=\dimen120
 )
-\c@ContinuedFloat=\count100
+\c@ContinuedFloat=\count101
+Package caption Info: float package is loaded.
 ) (./plos_template.aux
+
+LaTeX Warning: Label `fig:rawdreval' multiply defined.
+
+
+LaTeX Warning: Label `fig:rawdreval' multiply defined.
+
+
+LaTeX Warning: Label `fig:rawdreval' multiply defined.
+
 
 LaTeX Warning: Label `fig:rawdreval' multiply defined.
 
 )
 \openout1 = `plos_template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
 (/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count101
+\scratchcounter=\count102
 \scratchdimen=\dimen121
-\scratchbox=\box28
-\nofMPsegments=\count102
-\nofMParguments=\count103
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count104
+\scratchbox=\box30
+\nofMPsegments=\count103
+\nofMParguments=\count104
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count105
 \MPscratchDim=\dimen122
-\MPnumerator=\count105
-\makeMPintoPDFobject=\count106
-\everyMPtoPDFconversion=\toks21
+\MPnumerator=\count106
+\makeMPintoPDFobject=\count107
+\everyMPtoPDFconversion=\toks23
 ) (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifluatex.sty
@@ -206,301 +219,156 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-<<<<<<< Updated upstream
-
-
-Package caption Warning: \label without proper \caption on input line 66.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:data' on page 1 undefined on input line 60.
-
-<images/class_examples.png, id=1, 210.7875pt x 68.255pt>
-File: images/class_examples.png Graphic file (type png)
-
-<use images/class_examples.png>
-Package pdftex.def Info: images/class_examples.png used on input line 64.
-(pdftex.def)             Requested size: 284.5637pt x 92.14442pt.
-
-<images/Class1_1.jpg, id=3, 156.585pt x 156.585pt>
-File: images/Class1_1.jpg Graphic file (type jpg)
- <use images/Class1_1.jpg>
-Package pdftex.def Info: images/Class1_1.jpg used on input line 66.
-(pdftex.def)             Requested size: 93.95172pt x 93.95172pt.
-
-<images/Class1_2.jpg, id=4, 156.585pt x 156.585pt>
-File: images/Class1_2.jpg Graphic file (type jpg)
- <use images/Class1_2.jpg>
-Package pdftex.def Info: images/Class1_2.jpg used on input line 67.
-(pdftex.def)             Requested size: 93.95172pt x 93.95172pt.
-
-<images/Class1_3.jpg, id=5, 156.585pt x 156.585pt>
-File: images/Class1_3.jpg Graphic file (type jpg)
- <use images/Class1_3.jpg>
-Package pdftex.def Info: images/Class1_3.jpg used on input line 68.
-(pdftex.def)             Requested size: 93.95172pt x 93.95172pt.
-LaTeX Font Info:    Try loading font information for U+msa on input line 78.
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 78.
-
-=======
-LaTeX Font Info:    Try loading font information for U+msa on input line 58.
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 58.
->>>>>>> Stashed changes
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-
-<<<<<<< Updated upstream
-Package caption Warning: \label without proper \caption on input line 81.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:hog' on page 1 undefined on input line 78.
-
-[1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-
- <./images/class_examples.png> <./images/Class1_1.jpg> <./images/Class1_2.jpg> 
-<./images/Class1_3.jpg>] <images/HoG_features_noisy.png, id=15, 578.16pt x 289.
-08pt>
-=======
-Package caption Warning: \label without proper \caption on input line 66.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:hog' on page 1 undefined on input line 58.
-
-<images/HoG_features_noisy.png, id=1, 578.16pt x 289.08pt>
->>>>>>> Stashed changes
-File: images/HoG_features_noisy.png Graphic file (type png)
-<use images/HoG_features_noisy.png>
-<<<<<<< Updated upstream
-Package pdftex.def Info: images/HoG_features_noisy.png used on input line 83.
-=======
-Package pdftex.def Info: images/HoG_features_noisy.png used on input line 63.
->>>>>>> Stashed changes
-(pdftex.def)             Requested size: 346.89867pt x 173.44933pt.
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no — in font cmr10!
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no — in font cmr10!
-<<<<<<< Updated upstream
-
-=======
-
-Package caption Warning: \label without proper \caption on input line 82.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:raw' on page 1 undefined on input line 75.
->>>>>>> Stashed changes
 
 Package caption Warning: \label without proper \caption on input line 97.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:raw' on page 2 undefined on input line 95.
+LaTeX Warning: Reference `fig:data' on page 1 undefined on input line 86.
 
-<images/hand_engineered_features.jpg, id=16, 578.16pt x 433.62pt>
-File: images/hand_engineered_features.jpg Graphic file (type jpg)
-
-<use images/hand_engineered_features.jpg>
-Package pdftex.def Info: images/hand_engineered_features.jpg used on input line
- 99.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<<<<<<< Updated upstream
-
-Package caption Warning: \label without proper \caption on input line 107.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:raweval' on page 2 undefined on input line 105.
-
-<images/find_k_cv.jpg, id=17, 578.16pt x 433.62pt>
-File: images/find_k_cv.jpg Graphic file (type jpg)
- <use images/find_k_cv.jpg>
-Package pdftex.def Info: images/find_k_cv.jpg used on input line 109.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
-
+<images/class_examples.png, id=1, 210.7875pt x 68.255pt>
+File: images/class_examples.png Graphic file (type png)
+<use images/class_examples.png>
+Package pdftex.def Info: images/class_examples.png used on input line 90.
+(pdftex.def)             Requested size: 284.5637pt x 92.14442pt.
+<images/Class1_1.jpg, id=3, 156.585pt x 156.585pt>
+File: images/Class1_1.jpg Graphic file (type jpg)
+<use images/Class1_1.jpg>
+Package pdftex.def Info: images/Class1_1.jpg used on input line 92.
+(pdftex.def)             Requested size: 93.95172pt x 93.95172pt.
+<images/Class1_2.jpg, id=4, 156.585pt x 156.585pt>
+File: images/Class1_2.jpg Graphic file (type jpg)
+<use images/Class1_2.jpg>
+Package pdftex.def Info: images/Class1_2.jpg used on input line 93.
+(pdftex.def)             Requested size: 93.95172pt x 93.95172pt.
+<images/Class1_3.jpg, id=5, 156.585pt x 156.585pt>
+File: images/Class1_3.jpg Graphic file (type jpg)
+<use images/Class1_3.jpg>
+Package pdftex.def Info: images/Class1_3.jpg used on input line 94.
+(pdftex.def)             Requested size: 93.95172pt x 93.95172pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[2 <./images/HoG_features_noisy.png>]
+LaTeX Font Info:    Try loading font information for U+msa on input line 104.
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 104.
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 122.
-
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 129.
-
-=======
- <./images/HoG_features_noisy.png>] <images/hand_engineered_features.jpg, id=14, 578.16pt x 433.62pt>
-File: images/hand_engineered_features.jpg Graphic file (type jpg)
-<use images/hand_engineered_features.jpg>
-Package pdftex.def Info: images/hand_engineered_features.jpg used on input line 79.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
-
-Package caption Warning: \label without proper \caption on input line 92.
+Package caption Warning: \label without proper \caption on input line 112.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:raweval' on page 2 undefined on input line 85.
+LaTeX Warning: Reference `fig:hog' on page 1 undefined on input line 104.
 
-<images/find_k_cv.jpg, id=15, 578.16pt x 433.62pt>
+[1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+] <images/HoG_features_noisy.png, id=14, 578.16pt x 289.08pt>
+File: images/HoG_features_noisy.png Graphic file (type png)
+<use images/HoG_features_noisy.png>
+Package pdftex.def Info: images/HoG_features_noisy.png used on input line 109.
+(pdftex.def)             Requested size: 346.89867pt x 173.44933pt.
+[2 <./images/class_examples.png> <./images/Class1_1.jpg> <./images/Class1_2.jpg> <./images/Class1_3.jpg> <./images/HoG_features_noisy.png>]
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no — in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no — in font cmr10!
+
+Package caption Warning: \label without proper \caption on input line 139.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:raw' on page 3 undefined on input line 126.
+
+
+LaTeX Warning: Reference `fig:eval' on page 3 undefined on input line 129.
+
+<images/hand_engineered_features.jpg, id=22, 578.16pt x 433.62pt>
+File: images/hand_engineered_features.jpg Graphic file (type jpg)
+<use images/hand_engineered_features.jpg>
+Package pdftex.def Info: images/hand_engineered_features.jpg used on input line 136.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+<images/find_k_cv.jpg, id=23, 578.16pt x 433.62pt>
 File: images/find_k_cv.jpg Graphic file (type jpg)
 <use images/find_k_cv.jpg>
-Package pdftex.def Info: images/find_k_cv.jpg used on input line 89.
+Package pdftex.def Info: images/find_k_cv.jpg used on input line 144.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
-[2 <./images/hand_engineered_features.jpg> <./images/find_k_cv.jpg>]
+[3 <./images/hand_engineered_features.jpg>]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 102.
+(amsmath)                 on input line 157.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 109.
->>>>>>> Stashed changes
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 164.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-<<<<<<< Updated upstream
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 129.
- [3 <./images/hand_engineered_features.jpg>] [4 <./images/find_k_cv.jpg>]
-<images/HoG_DT_Heatmap.png, id=36, 578.16pt x 433.62pt>
-File: images/HoG_DT_Heatmap.png Graphic file (type png)
-
-<use images/HoG_DT_Heatmap.png>
-Package pdftex.def Info: images/HoG_DT_Heatmap.png used on input line 160.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
-
-<images/Raw_Features_DT_Heatmap.jpg, id=37, 578.16pt x 433.62pt>
-File: images/Raw_Features_DT_Heatmap.jpg Graphic file (type jpg)
-
-<use images/Raw_Features_DT_Heatmap.jpg>
-Package pdftex.def Info: images/Raw_Features_DT_Heatmap.jpg used on input line 
-168.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
-
-<images/HoG_DecisionTreeCV.png, id=38, 904.8204pt x 583.9416pt>
-File: images/HoG_DecisionTreeCV.png Graphic file (type png)
-
-<use images/HoG_DecisionTreeCV.png>
-Package pdftex.def Info: images/HoG_DecisionTreeCV.png used on input line 176.
-(pdftex.def)             Requested size: 361.92175pt x 233.5725pt.
-
-<images/Raw_Features_Decision_Tree_min_samples_split.jpg, id=39, 894.7026pt x 5
-90.4459pt>
-File: images/Raw_Features_Decision_Tree_min_samples_split.jpg Graphic file (typ
-e jpg)
- <use images/Raw_Features_Decision_Tree_min_samples_split.jpg>
-Package pdftex.def Info: images/Raw_Features_Decision_Tree_min_samples_split.jp
-g used on input line 184.
-(pdftex.def)             Requested size: 357.8747pt x 236.17418pt.
-
-<images/Raw_Features_Random_Forest_n_estimators.jpg, id=40, 883.1394pt x 590.44
-59pt>
-File: images/Raw_Features_Random_Forest_n_estimators.jpg Graphic file (type jpg
-)
- <use images/Raw_Features_Random_Forest_n_estimators.jpg>
-Package pdftex.def Info: images/Raw_Features_Random_Forest_n_estimators.jpg use
-d on input line 195.
-(pdftex.def)             Requested size: 353.2495pt x 236.17418pt.
-
-No file plos_template.bbl.
-[5 <./images/HoG_DT_Heatmap.png>] [6 <./images/Raw_Features_DT_Heatmap.jpg> <./
-images/HoG_DecisionTreeCV.png>] [7 <./images/Raw_Features_Decision_Tree_min_sam
-ples_split.jpg> <./images/Raw_Features_Random_Forest_n_estimators.jpg>]
-[8] (./plos_template.aux)
-=======
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 109.
-[3] <images/HoG_DT_Heatmap.png, id=28, 578.16pt x 433.62pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 164.
+[4 <./images/find_k_cv.jpg>] [5] <images/HoG_DT_Heatmap.png, id=39, 578.16pt x 433.62pt>
 File: images/HoG_DT_Heatmap.png Graphic file (type png)
 <use images/HoG_DT_Heatmap.png>
-Package pdftex.def Info: images/HoG_DT_Heatmap.png used on input line 140.
+Package pdftex.def Info: images/HoG_DT_Heatmap.png used on input line 195.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
-<images/Raw_Features_DT_Heatmap.jpg, id=29, 578.16pt x 433.62pt>
+<images/Raw_Features_DT_Heatmap.jpg, id=40, 578.16pt x 433.62pt>
 File: images/Raw_Features_DT_Heatmap.jpg Graphic file (type jpg)
 <use images/Raw_Features_DT_Heatmap.jpg>
-Package pdftex.def Info: images/Raw_Features_DT_Heatmap.jpg used on input line 148.
+Package pdftex.def Info: images/Raw_Features_DT_Heatmap.jpg used on input line 203.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
-<images/HoG_DecisionTreeCV.png, id=30, 904.8204pt x 583.9416pt>
+<images/HoG_DecisionTreeCV.png, id=41, 911.3247pt x 586.8324pt>
 File: images/HoG_DecisionTreeCV.png Graphic file (type png)
 <use images/HoG_DecisionTreeCV.png>
-Package pdftex.def Info: images/HoG_DecisionTreeCV.png used on input line 156.
-(pdftex.def)             Requested size: 361.92175pt x 233.5725pt.
-<images/Raw_Features_Decision_Tree_min_samples_split.jpg, id=31, 894.7026pt x 590.4459pt>
+Package pdftex.def Info: images/HoG_DecisionTreeCV.png used on input line 211.
+(pdftex.def)             Requested size: 364.52342pt x 234.72879pt.
+<images/Raw_Features_Decision_Tree_min_samples_split.jpg, id=42, 894.7026pt x 590.4459pt>
 File: images/Raw_Features_Decision_Tree_min_samples_split.jpg Graphic file (type jpg)
 <use images/Raw_Features_Decision_Tree_min_samples_split.jpg>
-Package pdftex.def Info: images/Raw_Features_Decision_Tree_min_samples_split.jpg used on input line 164.
+Package pdftex.def Info: images/Raw_Features_Decision_Tree_min_samples_split.jpg used on input line 221.
 (pdftex.def)             Requested size: 357.8747pt x 236.17418pt.
-<images/Raw_Features_Random_Forest_n_estimators.jpg, id=32, 883.1394pt x 590.4459pt>
+<images/Raw_Features_Random_Forest_n_estimators.jpg, id=43, 883.1394pt x 590.4459pt>
 File: images/Raw_Features_Random_Forest_n_estimators.jpg Graphic file (type jpg)
 <use images/Raw_Features_Random_Forest_n_estimators.jpg>
-Package pdftex.def Info: images/Raw_Features_Random_Forest_n_estimators.jpg used on input line 175.
+Package pdftex.def Info: images/Raw_Features_Random_Forest_n_estimators.jpg used on input line 232.
 (pdftex.def)             Requested size: 353.2495pt x 236.17418pt.
+<images/HoG_Random_Forest_n_estimators.jpg, id=44, 917.829pt x 587.5551pt>
+File: images/HoG_Random_Forest_n_estimators.jpg Graphic file (type jpg)
+<use images/HoG_Random_Forest_n_estimators.jpg>
+Package pdftex.def Info: images/HoG_Random_Forest_n_estimators.jpg used on input line 242.
+(pdftex.def)             Requested size: 367.12509pt x 235.01787pt.
+<images/Raw_Features_Random_Forest_min_samples_split.jpg, id=45, 906.2658pt x 587.5551pt>
+File: images/Raw_Features_Random_Forest_min_samples_split.jpg Graphic file (type jpg)
+<use images/Raw_Features_Random_Forest_min_samples_split.jpg>
+Package pdftex.def Info: images/Raw_Features_Random_Forest_min_samples_split.jpg used on input line 253.
+(pdftex.def)             Requested size: 362.4999pt x 235.01787pt.
+File: images/Raw_Features_Random_Forest_min_samples_split.jpg Graphic file (type jpg)
+<use images/Raw_Features_Random_Forest_min_samples_split.jpg>
+Package pdftex.def Info: images/Raw_Features_Random_Forest_min_samples_split.jpg used on input line 263.
+(pdftex.def)             Requested size: 362.4999pt x 235.01787pt.
 No file plos_template.bbl.
-[4] [5 <./images/HoG_DT_Heatmap.png> <./images/Raw_Features_DT_Heatmap.jpg>] [6 <./images/HoG_DecisionTreeCV.png> <./images/Raw_Features_Decision_Tree_min_samples_split.jpg>] [7 <./images/Raw_Features_Random_Forest_n_estimators.jpg>] (./plos_template.aux)
->>>>>>> Stashed changes
+[6 <./images/HoG_DT_Heatmap.png>] [7 <./images/Raw_Features_DT_Heatmap.jpg> <./images/HoG_DecisionTreeCV.png>] [8 <./images/Raw_Features_Decision_Tree_min_samples_split.jpg> <./images/Raw_Features_Random_Forest_n_estimators.jpg>] [9 <./images/HoG_Random_Forest_n_estimators.jpg> <./images/Raw_Features_Random_Forest_min_samples_split.jpg>] [10] (./plos_template.aux)
 
 LaTeX Warning: There were undefined references.
 
 
-<<<<<<< Updated upstream
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
-Here is how much of TeX's memory you used:
- 3625 strings out of 493315
- 54525 string characters out of 6137904
- 115542 words of memory out of 5000000
- 7026 multiletter control sequences out of 15000+600000
- 7210 words of font info for 28 fonts, out of 8000000 for 9000
- 957 hyphenation exceptions out of 8191
- 38i,7n,38p,1260b,341s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></us
-r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
-local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
-cal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local
-/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/
-texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on plos_template.pdf (8 pages, 786322 bytes).
-PDF statistics:
- 89 PDF objects out of 1000 (max. 8388607)
- 51 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
-=======
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3604 strings out of 493315
- 54057 string characters out of 6137904
- 116543 words of memory out of 5000000
- 7009 multiletter control sequences out of 15000+600000
+ 3686 strings out of 493315
+ 55718 string characters out of 6137904
+ 116834 words of memory out of 5000000
+ 7081 multiletter control sequences out of 15000+600000
  7210 words of font info for 28 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,7n,38p,1260b,341s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,7n,38p,1260b,343s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on plos_template.pdf (7 pages, 714333 bytes).
+Output written on plos_template.pdf (10 pages, 1005225 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 49 compressed objects within 1 object stream
+ 97 PDF objects out of 1000 (max. 8388607)
+ 55 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
->>>>>>> Stashed changes
+ 71 words of extra memory for PDF output out of 10000 (max. 10000000)
 

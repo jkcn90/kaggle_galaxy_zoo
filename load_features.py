@@ -43,6 +43,7 @@ def extract_features_from_directory(input_directory, feature_extraction_func, sc
 
     # Set GalaxyID as label
     feature_vectors = pd.DataFrame(feature_vectors)
+    print(feature_vectors.head())
     feature_vectors.set_index(0, inplace=True)
     feature_vectors.index.name='GalaxyID'
 
