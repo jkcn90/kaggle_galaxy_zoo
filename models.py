@@ -112,23 +112,27 @@ def knn_regressor(features, solutions, verbose=0):
 def lasso_regression(features, solutions, verbose=0):
     columns = solutions.columns
 
-    clf = Lasso(alpha=0.5e-4, max_iter=2000)
+    clf = Lasso(alpha=1e-4, max_iter=5000)
 
     print('Training Model... ')
     clf.fit(features, solutions)
     
-#     feature_coeff = clf.coef_
-#     for idx in range(3):
-#         features_importance = np.reshape(feature_coeff[idx, :], (169, 8))
-#         features_importance = np.max(features_importance, axis=1)
-#         features_importance = np.reshape(features_importance, (13, 13))
-#         plt.pcolor(features_importance)
-#         plt.title("Feature importance for Class1." + str(idx+1))
-#         plt.colorbar()
-#         plt.xticks(arange(0.5,13.5), range(1, 14))
-#         plt.yticks(arange(0.5,13.5), range(1, 14))
-#         plt.axis([0, 13, 0, 13])
-#         plt.show()
+    feature_coeff = clf.coef_
+    features_importances = np.zeros((169, 3))
+    for idx in range(3):
+        features_importance = np.reshape(feature_coeff[idx, :], (169, 8))
+        features_importance = np.max(features_importance, axis=1)
+        features_importances[:, idx] = features_importance
+        
+    features_importance_max = np.max(features_importances, axis=1)
+    features_importance_max = np.reshape(features_importance_max, (13, 13))
+    plt.pcolor(features_importance_max)
+    plt.title("Feature importance for HoG")
+    plt.colorbar()
+    plt.xticks(arange(0.5,13.5), range(1, 14))
+    plt.yticks(arange(0.5,13.5), range(1, 14))
+    plt.axis([0, 13, 0, 13])
+    plt.show()
     
     print('Done Training')
     return (clf, columns)

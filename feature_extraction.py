@@ -3,10 +3,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from scipy import ndimage as nd
-try:
-    import SimpleCV as cv
-except:
-    print('Warning: Running without SimpleCV')
+# try:
+#     import SimpleCV as cv
+# except:
+#     print('Warning: Running without SimpleCV')
 from skimage import io
 from skimage import color
 from skimage.transform import resize
@@ -137,7 +137,6 @@ def raw(path, rotate_images=False, cropped_size=9):
 def hog_features(path):
     '''
     Takes the image path and uses skimage libraries to get HoG features.
-    @author: Darshan Hegde
     '''
     print "Processing image: ", path.split("/")[-1]
     galaxy_image = io.imread(path, as_grey=True)
