@@ -20,7 +20,7 @@ def run(model, verbose=0):
         model: model function to run.
     """
     # Load the data and split into training and validation sets
-    data = GalaxyData(feature_extraction.raw_1, scale_features=False)
+    data = GalaxyData(feature_extraction.hog_features, scale_features=False)
 
     (training_features, training_solutions,
      validation_features, validation_solutions) = data.split_training_and_validation_data(50)
@@ -30,8 +30,8 @@ def run(model, verbose=0):
     predicted_validation_solutions = models.predict(clf, validation_features, columns)
 
     # Evaluate Predictions
-    valid_rmse = evaluate.get_rmse_clf(clf, validation_features, validation_solutions)
-    train_rmse = evaluate.get_rmse_clf(clf, training_features, training_solutions)
+    valid_rmse = evaluate.get_errors_clf(clf, validation_features, validation_solutions)
+    train_rmse = evaluate.get_errors_clf(clf, training_features, training_solutions)
     print " Validation RMSE: ", valid_rmse
     print " Training RMSE: ", train_rmse
 

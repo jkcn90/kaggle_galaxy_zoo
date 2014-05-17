@@ -8,8 +8,8 @@ import feature_extraction
 
 from sklearn import cross_validation
 
-INPUT_DIRECTORY = 'input_data'
-OUTPUT_DIRECTORY = 'output_data'
+INPUT_DIRECTORY = '../../data/proc_images/'
+OUTPUT_DIRECTORY = '../../data/proc_images/'
 
 class GalaxyData:
     """Loads and processes the data required for operating on the GalaxyZoo data.

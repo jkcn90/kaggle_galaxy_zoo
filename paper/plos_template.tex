@@ -47,10 +47,26 @@ jkn233@nyu.edu, dh1806@nyu.edu
 \section*{Introduction}
 
 
-
 \section*{Problem Definition}
 
-\section*{Methodology}
+Given an image of a galaxy, we need to predict the probability that it belongs to one of the given morpho- logical categories. The top left part of the poster shows examples from each category. On the left class 1.1 (Smooth Galaxy), in the middle is class 1.2 (Spiral Galaxy) and on the right is class 1.3 ( Star / Artifact).
+
+\section*{Data Description}
+
+The label for each image comes from a collaborative tagging effort by volunteers, in which 40-50 people classified each image as belonging to certain morpho- logical categories. The labels are averaged, so that we have a probability distribution across classes, in- stead of just a single label for each class. The data- set we chose for our project is subset of this, as we only consider 3 categories. We use 30,789 images as a training set and 30789 images as a test set. We use 5 fold cross validation ( CV ) to choose among different features, models and hyper-parameters. Figure \ref{fig:data} shows examples of 3 classes of galaxies.  
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=1.35]{images/class_examples.png}
+\linebreak
+\includegraphics[scale=0.6]{images/Class1_1.jpg}
+\includegraphics[scale=0.6]{images/Class1_2.jpg}
+\includegraphics[scale=0.6]{images/Class1_3.jpg}
+\caption{Galaxy class examples}
+\end{center}
+\label{fig:data}
+\end{figure}
+
 
 \section*{Feature Description}
 
@@ -181,8 +197,6 @@ To understand why, we plot the feature importance heat-map for both HoG and Raw 
 \end{figure}
 
 \section*{Results}
-
-
 
 \section*{Discussion}
 
